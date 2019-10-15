@@ -4,6 +4,10 @@ import { CommentModel } from '../../Models/CommentModel';
 
 interface ThreadedCommentGroupProps {
     comments: CommentModel[];
+
+    // recursive properties
+    depthHovered?: number | null;
+    onThreadHover?: (depthHovered: number) => void;
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
@@ -13,12 +17,21 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
         <div>
             {
                 props.comments.map((comment) =>
-                    <ThreadedComment
-                        key={comment.id}
-                        comment={comment}
-                        depthHovered={depthHovered}
-                        onThreadHover={(depthHovered) => setDepthHovered(depthHovered)}
-                    />)
+                    <div>
+                        {/* Root Comment */}
+                        <ThreadedComment
+                            key={comment.id}
+                            comment={comment}
+                            depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
+                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+                        />
+
+                        {/* Replies */}
+                        <ThreadedCommentGroup
+                            comments={comment.replies}
+                            depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
+                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}/>
+                    </div>)
             }
         </div>
     );
