@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.thread {
+    display: inline-block;
+    height: 100%;
+    margin-left: $thread-margin-left;
+    width: $thread-width;
+}
+
+.thread-line {
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-right: 2px solid $thread-color;
+}
