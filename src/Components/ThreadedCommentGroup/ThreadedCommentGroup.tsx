@@ -3,7 +3,8 @@ import ThreadedComment from '../ThreadedComment/ThreadedComment';
 import { CommentModel } from '../../Models/CommentModel';
 
 interface ThreadedCommentGroupProps {
-    comments: CommentModel[];
+    rootComment: CommentModel;
+    replies: CommentModel[];
 
     // recursive properties
     depthHovered?: number | null;
@@ -15,23 +16,24 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
 
     return (
         <div>
+            {/* Root Comment */}
+            <ThreadedComment
+                comment={props.rootComment}
+                depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
+                onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+            />
             {
-                props.comments.map((comment) =>
+                props.replies.map((comment) =>
                     <div>
-                        {/* Root Comment */}
-                        <ThreadedComment
-                            key={comment.id}
-                            comment={comment}
+                        {/* Replies */}
+                        <ThreadedCommentGroup
+                            rootComment={comment}
+                            replies={comment.replies}
                             depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
                             onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
                         />
-
-                        {/* Replies */}
-                        <ThreadedCommentGroup
-                            comments={comment.replies}
-                            depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
-                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}/>
-                    </div>)
+                    </div>
+                )
             }
         </div>
     );
