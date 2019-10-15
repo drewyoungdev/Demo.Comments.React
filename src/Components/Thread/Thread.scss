@@ -13,3 +13,11 @@
     width: 50%;
     border-right: 2px solid $thread-color;
 }
+
+.thread-line-hovered {
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-right: 2px solid $thread-color-hovered;
+
+}

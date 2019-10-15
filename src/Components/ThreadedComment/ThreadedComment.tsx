@@ -6,9 +6,12 @@ import './ThreadedComment.scss';
 
 interface ThreadedCommentProps {
     comment: CommentModel;
+    depthHovered: number | null;
+    onThreadHover: (depthHovered: number) => void;
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
+
     return (
         <div className="thread-group-container">
             <ThreadGroup {...props} />
