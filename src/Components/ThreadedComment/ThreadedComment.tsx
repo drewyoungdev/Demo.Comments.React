@@ -7,7 +7,7 @@ import './ThreadedComment.scss';
 interface ThreadedCommentProps {
     comment: CommentModel;
     depthHovered: number | null;
-    onThreadHover: (depthHovered: number) => void;
+    onThreadHover: (depthHovered: number | null) => void;
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {

@@ -6,10 +6,10 @@ import './ThreadGroup.scss';
 interface ThreadGroupProps {
     comment: CommentModel;
     depthHovered: number | null;
-    onThreadHover: (depthHovered: number) => void;
+    onThreadHover: (depthHovered: number | null) => void;
 }
 
-const renderThreads = (depth: number, depthHovered: number | null, onThreadHover: (depthHovered: number) => void) => {
+const renderThreads = (depth: number, depthHovered: number | null, onThreadHover: (depthHovered: number | null) => void) => {
     let threads = [];
 
     for (let i = 0; i <= depth; i++) {

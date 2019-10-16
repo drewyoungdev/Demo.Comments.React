@@ -8,7 +8,7 @@ interface ThreadedCommentGroupProps {
 
     // recursive properties
     depthHovered?: number | null;
-    onThreadHover?: (depthHovered: number) => void;
+    onThreadHover?: (depthHovered: number | null) => void;
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
