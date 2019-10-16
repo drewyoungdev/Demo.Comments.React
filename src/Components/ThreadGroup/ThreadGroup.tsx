@@ -9,13 +9,14 @@ interface ThreadGroupProps {
     onThreadHover: (depthHovered: number | null) => void;
 }
 
-const renderThreads = (depth: number, depthHovered: number | null, onThreadHover: (depthHovered: number | null) => void) => {
+const renderThreads = (comment: CommentModel, depth: number, depthHovered: number | null, onThreadHover: (depthHovered: number | null) => void) => {
     let threads = [];
 
     for (let i = 0; i <= depth; i++) {
         threads.push(
             <Thread
                 key={i}
+                rootComment={comment}
                 depth={i}
                 depthHovered={depthHovered}
                 onThreadHover={(depthHovered) => onThreadHover(depthHovered)}
@@ -28,7 +29,7 @@ const renderThreads = (depth: number, depthHovered: number | null, onThreadHover
 const ThreadGroup: React.FC<ThreadGroupProps> = (props) => {
     return (
         <div className="thread-group">
-            {renderThreads(props.comment.depth, props.depthHovered, props.onThreadHover)}
+            {renderThreads(props.comment, props.comment.depth, props.depthHovered, props.onThreadHover)}
         </div>
     );
 }

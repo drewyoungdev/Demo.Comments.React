@@ -10,14 +10,17 @@
 .thread-line {
     display: block;
     height: 100%;
-    width: 50%;
-    border-right: 2px solid $thread-color;
-}
+    // width: 50%;
+    border-right: $thread-line-width solid $thread-color;
 
-.thread-line-hovered {
-    display: block;
-    height: 100%;
-    width: 50%;
-    border-right: 2px solid $thread-color-hovered;
+    &.root-thread-line {
+        height: calc(100% - #{$vote-buttons-height});
+        position: absolute;
+        bottom: 0;
+        width: $thread-width - $thread-line-width;
+    }
 
+    &.thread-line-hovered {
+        border-right: $thread-line-width solid $thread-color-hovered;
+    }
 }

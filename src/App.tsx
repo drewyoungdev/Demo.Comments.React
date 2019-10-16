@@ -15,7 +15,13 @@ const testData: CommentModel[] = [
           {
             id: "",
             depth: 2,
-            replies: []
+            replies: [
+              {
+                id: "",
+                depth: 3,
+                replies: []
+              }
+            ]
           }
         ]
       }

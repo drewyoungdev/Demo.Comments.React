@@ -9,15 +9,19 @@ interface CommentProps {
 const calcPaddingLeftPx = (depth: number) => {
     const threadWidthPx = 16;
     const threadMarginLeftPx = 5;
-    const baselinePaddingLeftPx = threadWidthPx + threadMarginLeftPx;
+    const threadLineWidthPx = 2;
+    const baselinePaddingLeftPx = threadWidthPx + threadMarginLeftPx + threadLineWidthPx;
 
-    const additionalPaddingLeftPx = 25;
+    const additionalPaddingLeftPx = 15;
+    const paddingLeftFromThreadlinePx = baselinePaddingLeftPx + additionalPaddingLeftPx;
 
     if (depth === 0) {
-        return `${baselinePaddingLeftPx}px`;
+        return `${paddingLeftFromThreadlinePx}px`;
     }
 
-    return `${(baselinePaddingLeftPx * depth) + additionalPaddingLeftPx}px`
+    const paddingLeftFromThreadlineGroup = baselinePaddingLeftPx * depth
+
+    return `${paddingLeftFromThreadlineGroup + paddingLeftFromThreadlinePx}px`
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
