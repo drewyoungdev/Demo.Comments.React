@@ -8,9 +8,9 @@
 }
 
 .thread-line {
+    cursor: pointer;
     display: block;
     height: 100%;
-    // width: 50%;
     border-right: $thread-line-width solid $thread-color;
 
     &.root-thread-line {

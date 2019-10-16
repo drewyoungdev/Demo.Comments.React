@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.vote-buttons {
+    position: absolute;
+    margin: 16px -30px -2px 9px;
+    max-height: $vote-buttons-height;
+    min-width: 24px;
+    text-align: center;
+}

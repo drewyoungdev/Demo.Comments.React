@@ -1,34 +1,38 @@
 import React from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import './Comment.scss';
+import VoteButtons from '../VoteButtons/VoteButtons';
 
 interface CommentProps {
     comment: CommentModel;
 }
 
-const calcPaddingLeftPx = (depth: number) => {
+const calcPaddingLeftPx = (depth: number): number => {
     const threadWidthPx = 16;
     const threadMarginLeftPx = 5;
-    const threadLineWidthPx = 2;
-    const baselinePaddingLeftPx = threadWidthPx + threadMarginLeftPx + threadLineWidthPx;
+    const singleThreadWidthPx = threadWidthPx + threadMarginLeftPx;
 
-    const additionalPaddingLeftPx = 15;
-    const paddingLeftFromThreadlinePx = baselinePaddingLeftPx + additionalPaddingLeftPx;
+    const paddingLeftFromRootThread = singleThreadWidthPx + 15;
 
     if (depth === 0) {
-        return `${paddingLeftFromThreadlinePx}px`;
+        return paddingLeftFromRootThread;
     }
 
-    const paddingLeftFromThreadlineGroup = baselinePaddingLeftPx * depth
+    const paddingLeftFromThreadGroup = singleThreadWidthPx * depth
 
-    return `${paddingLeftFromThreadlineGroup + paddingLeftFromThreadlinePx}px`
+    return paddingLeftFromRootThread + paddingLeftFromThreadGroup + 4;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
     return (
-        <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
-            <div className="comment">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+        <div>
+            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 40}}>
+                <VoteButtons commentId={props.comment.id}/>
+            </div>
+            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
+                <div className="comment">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+                </div>
             </div>
         </div>
     );
