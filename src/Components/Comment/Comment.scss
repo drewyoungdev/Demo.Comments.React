@@ -1,8 +1,3 @@
-@import '../../styles/variables';
-
-// Calculate padding by doing
-// depth * ($thread-margin-left + $thread-width)
 .comment {
-    padding-left: 150px;
-    margin-top: 20px;
+    padding: 0.8em 0 0.8em 0;
 }
