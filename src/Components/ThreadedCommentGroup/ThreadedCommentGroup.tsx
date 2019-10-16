@@ -12,25 +12,26 @@ interface ThreadedCommentGroupProps {
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
-    const [depthHovered, setDepthHovered] = useState<number | null>(null);
+    const { depthHovered, onThreadHover, replies, rootComment } = props
+    const [depthHover, setDepthHovered] = useState<number | null>(null);
 
     return (
         <div>
             {/* Root Comment */}
             <ThreadedComment
-                comment={props.rootComment}
-                depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
-                onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+                comment={rootComment}
+                depthHovered={depthHovered !== undefined ? depthHovered : depthHover}
+                onThreadHover={onThreadHover !== undefined ? onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
             />
             {
-                props.replies.map((comment) =>
+                replies.map((comment) =>
                     <div>
                         {/* Replies */}
                         <ThreadedCommentGroup
                             rootComment={comment}
                             replies={comment.replies}
-                            depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
-                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+                            depthHovered={depthHovered !== undefined ? depthHovered : depthHover}
+                            onThreadHover={onThreadHover !== undefined ? onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
                         />
                     </div>
                 )
