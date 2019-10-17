@@ -23,8 +23,8 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                 onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
             />
             {
-                props.replies.map((comment) =>
-                    <div>
+                props.replies.map((comment, idx) =>
+                    <div key={idx}>
                         {/* Replies */}
                         <ThreadedCommentGroup
                             rootComment={comment}

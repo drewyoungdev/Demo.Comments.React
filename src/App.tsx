@@ -64,8 +64,9 @@ const App: React.FC = () => {
     <div className="main-container">
       {/* TODO: Add ability to enable and disable threads */}
       {
-        testData.map((comment) =>
+        testData.map((comment, idx) =>
           <ThreadedCommentGroup
+            key={idx}
             rootComment={comment}
             replies={comment.replies}
           />
