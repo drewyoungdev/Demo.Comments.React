@@ -7,18 +7,26 @@ const testData: CommentModel[] = [
   {
     id: "abc-456",
     depth: 0,
+    author: "user1",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
     replies: [
       {
-        id: "",
+        id: "cdf-234",
         depth: 1,
+        author: "user1",
+        text: "Hello world",
         replies: [
           {
             id: "",
             depth: 2,
+            author: "user1",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
             replies: [
               {
                 id: "",
                 depth: 3,
+                author: "user1",
+                text: "Hello world",
                 replies: []
               }
             ]
@@ -30,10 +38,14 @@ const testData: CommentModel[] = [
   {
     id: "abc-123",
     depth: 0,
+    author: "user1",
+    text: "Hello world",
     replies: [
       {
         id: "",
         depth: 1,
+        author: "user1",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
         replies: []
       }
     ]
@@ -41,18 +53,9 @@ const testData: CommentModel[] = [
   {
     id: "abc-789",
     depth: 0,
+    author: "user1",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
     replies: []
-  },
-  {
-    id: "abc-111",
-    depth: 0,
-    replies: [
-      {
-        id: "",
-        depth: 1,
-        replies: []
-      }
-    ]
   }
 ]
 

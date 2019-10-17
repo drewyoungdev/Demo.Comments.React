@@ -34,12 +34,35 @@ const Comment: React.FC<CommentProps> = (props) => {
                 />
             </div>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
+                {/* TODO: Rename to VoteCommentComponent and move below div into own CommentComponent */}
                 <div className="comment">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+                    <div className="comment-header">
+                        <div className="comment-header-author">
+                            <a>
+                                {props.comment.author}
+                            </a>
+                        </div>
+                        <a className="comment-header-item">
+                            Item
+                        </a>
+                        <a className="comment-header-item">
+                            Item
+                        </a>
+                    </div>
+                    <div className="comment-body">
+                        {props.comment.text}
+                    </div>
+                    <div className="comment-footer">
+                        <button className="comment-footer-item">
+                            Reply
+                        </button>
+                        <button className="comment-footer-item">
+                            Share
+                        </button>
+                        <button className="comment-footer-item">
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

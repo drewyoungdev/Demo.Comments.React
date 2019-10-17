@@ -1,4 +1,60 @@
 .comment {
-    min-height: 100px;
+    min-height: 5em;
     padding: 1em 0 0 0;
+}
+
+.comment-header {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-height: 1em;
+}
+.comment-header > a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.comment-header-author,
+.comment-header-item{
+    font-size: 0.8em;
+    font-weight: 400;
+    line-height: 1em;
+
+    flex: 0 0 auto;
+
+    &.comment-header-item {
+        padding-left: 0.8em;
+    }
+}
+
+.comment-body {
+    margin: 0.5em 0 0.5em 0;
+    width: 100%;
+}
+
+.comment-footer {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.comment-footer > button {
+    display: block;
+    margin-right: 0.5em;
+
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: initial;
+    outline: 0;
+}
+.comment-footer > button:hover {
+    text-decoration: underline;
+}
+.comment-footer-item {
+    font-size: 0.9em;
+    font-weight: 700;
+    line-height: 1.5em;
+
+    color: rgb(135, 138, 140);
 }

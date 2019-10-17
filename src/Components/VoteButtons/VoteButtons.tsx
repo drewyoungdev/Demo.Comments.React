@@ -9,7 +9,7 @@ interface VoteButtonsProps {
 }
 
 const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
-    // TODO: allow state to be set by props if comment has already been upvoted/downvoted
+    // TODO: allow initial state to be set by props if comment has already been upvoted/downvoted
     const [isUpvoteSelected, setIsUpvoteSelected] = useState<boolean>(false);
     const [isDownvoteSelected, setIsDownvotedSelected] = useState<boolean>(false);
 
