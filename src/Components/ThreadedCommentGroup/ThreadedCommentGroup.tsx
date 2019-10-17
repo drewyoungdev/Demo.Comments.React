@@ -13,17 +13,19 @@ interface ThreadedCommentGroupProps {
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     const [depthHovered, setDepthHovered] = useState<number | null>(null);
+    const [replies, setReplies] = useState<CommentModel[]>(props.replies);
 
     return (
         <div>
             {/* Root Comment */}
             <ThreadedComment
                 comment={props.rootComment}
+                addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
                 depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
                 onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
             />
             {
-                props.replies.map((comment, idx) =>
+                replies.map((comment, idx) =>
                     <div key={idx}>
                         {/* Replies */}
                         <ThreadedCommentGroup

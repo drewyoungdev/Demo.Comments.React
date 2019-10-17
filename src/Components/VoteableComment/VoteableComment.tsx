@@ -5,6 +5,7 @@ import Comment from '../Comment/Comment';
 
 interface VoteableCommentProps {
     comment: CommentModel;
+    addNewComment: (newComment: CommentModel) => void;
 }
 
 const calcPaddingLeftPx = (depth: number): number => {

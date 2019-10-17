@@ -5,6 +5,7 @@ import ReplyBox from '../ReplyBox/ReplyBox';
 
 interface CommentProps {
     comment: CommentModel
+    addNewComment: (newComment: CommentModel) => void;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
@@ -12,13 +13,13 @@ const Comment: React.FC<CommentProps> = (props) => {
 
     const addNewComment = (text: string) => {
         // This should be re-rendering a brand new ThreadedCommentGroup to get it's own unique ThreadHover chain
-        props.comment.replies.push({
+        props.addNewComment({
             id: "",
             author: "",
             text: text,
             depth: props.comment.depth + 1,
             replies: []
-        })
+        });
     }
 
     return (

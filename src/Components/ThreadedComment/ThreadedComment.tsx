@@ -8,6 +8,7 @@ interface ThreadedCommentProps {
     comment: CommentModel;
     depthHovered: number | null;
     onThreadHover: (depthHovered: number | null) => void;
+    addNewComment: (newComment: CommentModel) => void;
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {

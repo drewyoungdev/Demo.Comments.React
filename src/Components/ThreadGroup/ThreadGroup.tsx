@@ -12,6 +12,10 @@ interface ThreadGroupProps {
 const renderThreads = (comment: CommentModel, depth: number, depthHovered: number | null, onThreadHover: (depthHovered: number | null) => void) => {
     let threads = [];
 
+    // if it's a newComment and it's the root depth, can it get a new ref to emit hovers?
+
+    // or what if the depthHovered is a hash of the parent id + depth???
+
     for (let i = 0; i <= depth; i++) {
         threads.push(
             <Thread
