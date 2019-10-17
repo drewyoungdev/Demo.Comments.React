@@ -20,17 +20,25 @@ const calcPaddingLeftPx = (depth: number): number => {
 
     const paddingLeftFromThreadGroup = singleThreadWidthPx * depth
 
-    return paddingLeftFromRootThread + paddingLeftFromThreadGroup + 4;
+    return paddingLeftFromRootThread + paddingLeftFromThreadGroup;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
     return (
         <div>
-            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 40}}>
-                <VoteButtons commentId={props.comment.id}/>
+            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 33}}>
+                <VoteButtons
+                    commentId={props.comment.id}
+                    onUpvoteClick={console.log}
+                    onDownvoteClick={console.log}
+                />
             </div>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
                 <div className="comment">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.
                 </div>
             </div>

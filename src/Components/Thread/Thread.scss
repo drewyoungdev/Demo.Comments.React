@@ -14,9 +14,10 @@
     border-right: $thread-line-width solid $thread-color;
 
     &.root-thread-line {
-        height: calc(100% - #{$vote-buttons-height});
+        height: calc(100% - #{$vote-buttons-height + 15});
         position: absolute;
         bottom: 0;
+        right: 0;
         width: $thread-width - $thread-line-width;
     }
 

@@ -7,3 +7,21 @@
     min-width: 24px;
     text-align: center;
 }
+
+.vote-buttons > button {
+    display: block;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: initial;
+    outline:0;
+}
+
+.upvote:hover, .upvote-selected {
+    color: $upvote-hover-color;
+}
+
+.downvote:hover, .downvote-selected {
+    color: $downvote-hover-color;
+}
