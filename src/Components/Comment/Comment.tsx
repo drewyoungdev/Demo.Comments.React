@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import './Comment.scss';
+import ReplyBox from '../ReplyBox/ReplyBox';
 
 interface CommentProps {
     comment: CommentModel
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
+    const [showReplyBox, setShowReplyBox] = useState<boolean>(false);
+
+    const addNewComment = (text: string) => {
+        // This should be re-rendering a brand new ThreadedCommentGroup to get it's own unique ThreadHover chain
+        props.comment.replies.push({
+            id: "",
+            author: "",
+            text: text,
+            depth: props.comment.depth + 1,
+            replies: []
+        })
+    }
+
     return (
         <div>
             <div className="comment-container">
@@ -28,7 +42,9 @@ const Comment: React.FC<CommentProps> = (props) => {
                     {props.comment.text}
                 </div>
                 <div className="comment-row comment-footer">
-                    <button className="comment-row-item">
+                    <button
+                        className="comment-row-item"
+                        onClick={() => setShowReplyBox(!showReplyBox)}>
                         <i className="comment icon" />
                         Reply
                     </button>
@@ -38,6 +54,18 @@ const Comment: React.FC<CommentProps> = (props) => {
                     <button className="comment-row-item">
                         Save
                     </button>
+                </div>
+                <div
+                    className="comment-row"
+                    style={{ display: showReplyBox ? "" : "none" }}
+                >
+                    <ReplyBox
+                        onReplyClick={(replyText) => {
+                            setShowReplyBox(false);
+                            addNewComment(replyText);
+                        }}
+                        onCancelClick={() => setShowReplyBox(false)}
+                    />
                 </div>
             </div>
         </div>
