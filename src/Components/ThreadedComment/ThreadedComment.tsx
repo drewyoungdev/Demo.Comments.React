@@ -1,6 +1,6 @@
 import React from 'react';
 import ThreadGroup from '../ThreadGroup/ThreadGroup';
-import Comment from '../Comment/Comment';
+import VoteableComment from '../VoteableComment/VoteableComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedComment.scss';
 
@@ -15,7 +15,7 @@ const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
     return (
         <div className="thread-group-container">
             <ThreadGroup {...props} />
-            <Comment {...props} />
+            <VoteableComment {...props} />
         </div>
     );
 }
