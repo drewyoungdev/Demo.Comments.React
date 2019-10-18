@@ -4,23 +4,24 @@ import './Thread.scss';
 import { classList } from '../../Helpers/classList';
 
 interface ThreadProps {
-    rootComment: CommentModel;
+    isRootThread: boolean;
+    parentId: string;
     depth: number;
-    depthHovered: number | null;
-    onThreadHover: (depthHovered: number | null) => void;
+    parentIdHovered: string | null;
+    onThreadHover: (parentIdHovered: string | null) => void;
 }
 
 const Thread: React.FC<ThreadProps> = (props) => {
     return (
         <div
             className="thread"
-            onMouseOver={() => props.onThreadHover(props.depth)}
+            onMouseOver={() => props.onThreadHover(props.parentId)}
             onMouseOut={() => props.onThreadHover(null)}>
             <i className={
                 classList({
                     "thread-line": true,
-                    "root-thread-line": props.depth === props.rootComment.depth,
-                    "thread-line-hovered": props.depthHovered === props.depth
+                    "root-thread-line": props.isRootThread,
+                    "thread-line-hovered": props.parentIdHovered === props.parentId
                 })
             } />
         </div>
