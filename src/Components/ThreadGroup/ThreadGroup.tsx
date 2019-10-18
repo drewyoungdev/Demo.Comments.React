@@ -10,19 +10,18 @@ interface ThreadGroupProps {
     onThreadHover: (parentIdHovered: string | null) => void;
 }
 
-const renderThreads = (comment: CommentModel, parentIdBreadcrumbs: string[], depth: number, parentIdHovered: string | null, onThreadHover: (parentIdHovered: string | null) => void) => {
+const renderThreads = (props: ThreadGroupProps) => {
     let threads = [];
 
-
-    for (let i = 0; i <= depth; i++) {
+    for (let i = 0; i <= props.comment.depth; i++) {
         threads.push(
             <Thread
                 key={i}
-                isRootThread={i === comment.depth}
-                parentId={parentIdBreadcrumbs[i]}
+                isRootThread={i === props.comment.depth}
+                parentId={props.parentIdBreadcrumbs[i]}
                 depth={i}
-                parentIdHovered={parentIdHovered}
-                onThreadHover={(parentIdHovered) => onThreadHover(parentIdHovered)}
+                parentIdHovered={props.parentIdHovered}
+                onThreadHover={(parentIdHovered) => props.onThreadHover(parentIdHovered)}
             />);
     }
 
@@ -32,7 +31,7 @@ const renderThreads = (comment: CommentModel, parentIdBreadcrumbs: string[], dep
 const ThreadGroup: React.FC<ThreadGroupProps> = (props) => {
     return (
         <div className="thread-group">
-            {renderThreads(props.comment, props.parentIdBreadcrumbs, props.comment.depth, props.parentIdHovered, props.onThreadHover)}
+            {renderThreads({...props})}
         </div>
     );
 }

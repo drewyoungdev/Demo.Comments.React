@@ -1,5 +1,4 @@
 import React from 'react';
-import { CommentModel } from '../../Models/CommentModel';
 import './Thread.scss';
 import { classList } from '../../Helpers/classList';
 
