@@ -5,25 +5,29 @@ import { CommentModel } from './Models/CommentModel';
 
 const testData: CommentModel[] = [
   {
+    parentId: "",
     id: "abc-456",
     depth: 0,
     author: "user1",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
     replies: [
       {
+        parentId: "abc-456",
         id: "cdf-234",
         depth: 1,
         author: "user1",
         text: "Hello world",
         replies: [
           {
-            id: "",
+            parentId: "cdf-234",
+            id: "543-cds",
             depth: 2,
             author: "user1",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
             replies: [
               {
-                id: "",
+                parentId: "543-cds",
+                id: "90dfss-2",
                 depth: 3,
                 author: "user1",
                 text: "Hello world",
@@ -36,13 +40,15 @@ const testData: CommentModel[] = [
     ]
   },
   {
+    parentId: "",
     id: "abc-123",
     depth: 0,
     author: "user1",
     text: "Hello world",
     replies: [
       {
-        id: "",
+        parentId: "abc-123",
+        id: "444-32a",
         depth: 1,
         author: "user1",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
@@ -51,6 +57,7 @@ const testData: CommentModel[] = [
     ]
   },
   {
+    parentId: "",
     id: "abc-789",
     depth: 0,
     author: "user1",
@@ -69,6 +76,7 @@ const App: React.FC = () => {
             key={idx}
             rootComment={comment}
             replies={comment.replies}
+            parentIdBreadcrumbs={[comment.id]}
           />
         )
       }

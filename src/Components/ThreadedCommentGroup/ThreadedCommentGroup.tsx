@@ -5,32 +5,37 @@ import { CommentModel } from '../../Models/CommentModel';
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
     replies: CommentModel[];
+    parentIdBreadcrumbs: string[];
 
     // recursive properties
-    depthHovered?: number | null;
-    onThreadHover?: (depthHovered: number | null) => void;
+    parentIdHovered?: string | null;
+    onThreadHover?: (parentIdHovered: string | null) => void;
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
-    const [depthHovered, setDepthHovered] = useState<number | null>(null);
+    const [parentIdHovered, setParentIdHovered] = useState<string | null>(null);
+    const [replies, setReplies] = useState<CommentModel[]>(props.replies);
 
     return (
         <div>
             {/* Root Comment */}
             <ThreadedComment
                 comment={props.rootComment}
-                depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
-                onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+                addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
+                parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                parentIdHovered={props.parentIdHovered !== undefined ? props.parentIdHovered : parentIdHovered}
+                onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (parentIdHovered) => setParentIdHovered(parentIdHovered)}
             />
             {
-                props.replies.map((comment, idx) =>
+                replies.map((comment, idx) =>
                     <div key={idx}>
                         {/* Replies */}
                         <ThreadedCommentGroup
                             rootComment={comment}
+                            parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
                             replies={comment.replies}
-                            depthHovered={props.depthHovered !== undefined ? props.depthHovered : depthHovered}
-                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (depthHovered) => setDepthHovered(depthHovered)}
+                            parentIdHovered={props.parentIdHovered !== undefined ? props.parentIdHovered : parentIdHovered}
+                            onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (parentIdHovered) => setParentIdHovered(parentIdHovered)}
                         />
                     </div>
                 )
