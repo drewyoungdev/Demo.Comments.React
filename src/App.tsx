@@ -10,6 +10,7 @@ const testData: CommentModel[] = [
     depth: 0,
     author: "user1",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
+    createDate: "2018-10-14T20:50:00",
     replies: [
       {
         parentId: "abc-456",
@@ -17,6 +18,7 @@ const testData: CommentModel[] = [
         depth: 1,
         author: "user1",
         text: "Hello world",
+        createDate: "2019-10-1T20:50:00",
         replies: [
           {
             parentId: "cdf-234",
@@ -24,6 +26,7 @@ const testData: CommentModel[] = [
             depth: 2,
             author: "user1",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
+            createDate: "2019-10-16T20:50:00",
             replies: [
               {
                 parentId: "543-cds",
@@ -31,6 +34,7 @@ const testData: CommentModel[] = [
                 depth: 3,
                 author: "user1",
                 text: "Hello world",
+                createDate: "2019-10-17T20:55:00",
                 replies: []
               }
             ]
@@ -38,31 +42,6 @@ const testData: CommentModel[] = [
         ]
       }
     ]
-  },
-  {
-    parentId: "",
-    id: "abc-123",
-    depth: 0,
-    author: "user1",
-    text: "Hello world",
-    replies: [
-      {
-        parentId: "abc-123",
-        id: "444-32a",
-        depth: 1,
-        author: "user1",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
-        replies: []
-      }
-    ]
-  },
-  {
-    parentId: "",
-    id: "abc-789",
-    depth: 0,
-    author: "user1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
-    replies: []
   }
 ]
 

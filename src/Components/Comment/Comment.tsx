@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import './Comment.scss';
 import ReplyBox from '../ReplyBox/ReplyBox';
+import TimeAgo from 'react-timeago';
 
 interface CommentProps {
     comment: CommentModel
@@ -18,6 +19,7 @@ const Comment: React.FC<CommentProps> = (props) => {
             author: "current logged in user",
             text: text,
             depth: props.comment.depth + 1,
+            createDate: new Date().toISOString(),
             replies: []
         });
     }
@@ -36,7 +38,10 @@ const Comment: React.FC<CommentProps> = (props) => {
                         ·
                     </div>
                     <div className="comment-row-item">
-                        a few minutes ago
+                        <TimeAgo
+                            date={props.comment.createDate}
+                            live={false}
+                        />
                     </div>
                 </div>
                 <div className="comment-body">
