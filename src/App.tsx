@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import ThreadedCommentGroup from './Components/ThreadedCommentGroup/ThreadedCommentGroup';
 import { CommentModel } from './Models/CommentModel';
@@ -46,6 +46,23 @@ const testData: CommentModel[] = [
 ]
 
 const App: React.FC = () => {
+  // Should below be a candidate for Context API usage?
+  const [parentIdsClicked, setParentIdsClicked] = useState<string[]>([]);
+
+  const addParentId = (parentIdClicked: string) => {
+    // Check for if already exists
+
+    // Append to array
+    setParentIdsClicked((prevParentIdsClicked) => [...prevParentIdsClicked, parentIdClicked]);
+  }
+
+  const removeParentId = (parentIdRemoved: string) => {
+    // Check for if already exists
+
+    // Remove from array
+    setParentIdsClicked((prevParentIdsClicked) => prevParentIdsClicked.filter((parentId) => parentId !== parentIdRemoved));
+  }
+
   return (
     <div className="main-container">
       {/* TODO: Add ability to enable and disable threads */}
@@ -56,6 +73,9 @@ const App: React.FC = () => {
             rootComment={comment}
             replies={comment.replies}
             parentIdBreadcrumbs={[comment.id]}
+            parentIdsClicked={parentIdsClicked}
+            onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
+            onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
           />
         )
       }

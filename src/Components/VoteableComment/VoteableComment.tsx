@@ -1,11 +1,13 @@
 import React from 'react';
 import { CommentModel } from '../../Models/CommentModel';
-import VoteButtons from '../VoteButtons/VoteButtons';
 import Comment from '../Comment/Comment';
+import ActionButtons from '../ActionButtons/ActionButtons';
 
 interface VoteableCommentProps {
     comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
+    isCollapsed: boolean;
+    onExpandClick: (parentIdClicked: string) => void;
 }
 
 const calcPaddingLeftPx = (depth: number): number => {
@@ -26,18 +28,18 @@ const calcPaddingLeftPx = (depth: number): number => {
 
 const VoteableComment: React.FC<VoteableCommentProps> = (props) => {
     return (
-        <div>
+        <>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 33}}>
-                <VoteButtons
+                <ActionButtons
                     commentId={props.comment.id}
-                    onUpvoteClick={console.log}
-                    onDownvoteClick={console.log}
+                    isCollapsed={props.isCollapsed}
+                    onExpandClick={props.onExpandClick}
                 />
             </div>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
                 <Comment {...props} />
             </div>
-        </div>
+        </>
     );
 }
 

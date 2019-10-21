@@ -20,10 +20,6 @@
         color: $meta-data-color;
     }
 
-    &.comment-header .author {
-        color: $accent-color75;
-    }
-
     &.comment-footer {
         font-size: 0.9em;
         font-weight: 600;
@@ -57,4 +53,16 @@
 
 .comment-row-item {
     margin-right: 0.5em;
+
+    &.comment-row-item-collapsed {
+        color: $meta-data-color50;
+    }
+
+    &.comment-row-item-author {
+        color: $accent-color75;
+    }
+
+    &.comment-row-item-author-collapsed {
+        color: $accent-color50;
+    }
 }
