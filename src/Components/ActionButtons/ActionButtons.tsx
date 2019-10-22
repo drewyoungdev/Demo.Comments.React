@@ -1,7 +1,6 @@
 import React from 'react';
 import './ActionButtons.scss';
 import VoteButtons from '../VoteButtons/VoteButtons';
-import { classList } from '../../Helpers/classList';
 import ExpandButton from '../ExpandButton/ExpandButton';
 
 interface ActionButtonsProps {
