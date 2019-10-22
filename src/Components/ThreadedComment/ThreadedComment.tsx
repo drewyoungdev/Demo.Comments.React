@@ -1,6 +1,6 @@
 import React from 'react';
 import ThreadGroup from '../ThreadGroup/ThreadGroup';
-import VoteableComment from '../VoteableComment/VoteableComment';
+import VoteableComment from '../ActionableComment/ActionableComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedComment.scss';
 

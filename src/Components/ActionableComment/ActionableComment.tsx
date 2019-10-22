@@ -3,7 +3,7 @@ import { CommentModel } from '../../Models/CommentModel';
 import Comment from '../Comment/Comment';
 import ActionButtons from '../ActionButtons/ActionButtons';
 
-interface VoteableCommentProps {
+interface ActionableCommentProps {
     comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
     isCollapsed: boolean;
@@ -26,7 +26,8 @@ const calcPaddingLeftPx = (depth: number): number => {
     return paddingLeftFromRootThread + paddingLeftFromThreadGroup;
 }
 
-const VoteableComment: React.FC<VoteableCommentProps> = (props) => {
+// May want to rename to just ActionComment so client has ability to just have regular Threaded Comments with no Vote ability
+const VoteableComment: React.FC<ActionableCommentProps> = (props) => {
     return (
         <>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 33}}>
