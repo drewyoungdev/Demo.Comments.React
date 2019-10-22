@@ -9,12 +9,11 @@ interface VoteButtonsProps {
 }
 
 const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
-    // TODO: allow initial state to be set by props if comment has already been upvoted/downvoted
     const [isUpvoteSelected, setIsUpvoteSelected] = useState<boolean>(false);
     const [isDownvoteSelected, setIsDownvotedSelected] = useState<boolean>(false);
 
     return (
-        <div className="vote-buttons">
+        <div className="action-buttons">
             <button onClick={() =>
                 {
                     props.onUpvoteClick(props.commentId);

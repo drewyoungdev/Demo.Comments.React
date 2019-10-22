@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .comment-container {
-    min-height: 5em;
+    min-height: 3em;
     padding: 1em 0 0 0;
 }
 
@@ -18,10 +18,6 @@
     &.comment-header {
         font-size: 0.8em;
         color: $meta-data-color;
-    }
-
-    &.comment-header .author {
-        color: $accent-color75;
     }
 
     &.comment-footer {
@@ -57,4 +53,24 @@
 
 .comment-row-item {
     margin-right: 0.5em;
+
+    &.comment-row-item-collapsed {
+        color: $meta-data-color50;
+    }
+
+    &.comment-row-item-author {
+        color: $accent-color75;
+    }
+
+    &.comment-row-item-author:hover {
+        color: $accent-color;
+    }
+
+    &.comment-row-item-author-collapsed {
+        color: $accent-color50;
+    }
+
+    &.comment-row-item-author-collapsed:hover {
+        color: $accent-color75;
+    }
 }

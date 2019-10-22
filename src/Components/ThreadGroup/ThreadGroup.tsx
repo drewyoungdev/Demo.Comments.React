@@ -8,6 +8,8 @@ interface ThreadGroupProps {
     parentIdBreadcrumbs: string[];
     parentIdHovered: string | null;
     onThreadHover: (parentIdHovered: string | null) => void;
+    onThreadClick: (parentIdClicked: string) => void;
+    isCollapsed: boolean;
 }
 
 const renderThreads = (props: ThreadGroupProps) => {
@@ -17,11 +19,13 @@ const renderThreads = (props: ThreadGroupProps) => {
         threads.push(
             <Thread
                 key={i}
-                isRootThread={i === props.comment.depth}
-                parentId={props.parentIdBreadcrumbs[i]}
                 depth={i}
+                isRootThread={i === props.comment.depth}
+                isCollapsed={props.isCollapsed}
+                parentId={props.parentIdBreadcrumbs[i]}
                 parentIdHovered={props.parentIdHovered}
                 onThreadHover={(parentIdHovered) => props.onThreadHover(parentIdHovered)}
+                onThreadClick={(parentIdClicked) => props.onThreadClick(parentIdClicked)}
             />);
     }
 

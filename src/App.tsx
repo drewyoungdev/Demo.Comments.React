@@ -1,54 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import ThreadedCommentGroup from './Components/ThreadedCommentGroup/ThreadedCommentGroup';
 import { CommentModel } from './Models/CommentModel';
 
-const testData: CommentModel[] = [
-  {
-    parentId: "",
-    id: "abc-456",
-    depth: 0,
-    author: "user1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
+const generateRandomNumber = (maxNumber: number): number => {
+  return Math.floor((Math.random() * maxNumber) + 1);
+}
+
+const generateRandomString = (): string => {
+  return Math.random().toString(36).substring(7);
+}
+
+const generateRandomText = (numOfWords: number): string => {
+  var words =["The sky", "above", "the port","was", "the color of television", "tuned", "to", "a dead channel", ".", "All", "this happened", "more or less","." ,"I", "had", "the story", "bit by bit", "from various people", "and", "as generally", "happens", "in such cases", "each time", "it", "was", "a different story","." ,"It", "was", "a pleasure", "to", "burn"];
+  var text = [];
+  var x = numOfWords;
+  while(--x) text.push(words[Math.floor(Math.random() * words.length) + 1]);
+  return text.join(" ");
+}
+
+const generateRandomComment = (parentId: string, depth: number): CommentModel => {
+  return {
+    parentId: parentId,
+    id: generateRandomString(),
+    depth: depth,
+    author:  generateRandomString(),
+    text: generateRandomText(generateRandomNumber(80)),
     createDate: "2018-10-14T20:50:00",
-    replies: [
-      {
-        parentId: "abc-456",
-        id: "cdf-234",
-        depth: 1,
-        author: "user1",
-        text: "Hello world",
-        createDate: "2019-10-1T20:50:00",
-        replies: [
-          {
-            parentId: "cdf-234",
-            id: "543-cds",
-            depth: 2,
-            author: "user1",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor risus sit amet neque fringilla, vitae ultrices libero egestas.",
-            createDate: "2019-10-16T20:50:00",
-            replies: [
-              {
-                parentId: "543-cds",
-                id: "90dfss-2",
-                depth: 3,
-                author: "user1",
-                text: "Hello world",
-                createDate: "2019-10-17T20:55:00",
-                replies: []
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    replies: [] as CommentModel[]
   }
-]
+}
+
+const createComments = (numOfReplies: number): CommentModel[] => {
+  let testData = [] as CommentModel[];
+
+  for (let i = 0; i < numOfReplies; i++) {
+    const rootComment = generateRandomComment("", 0);
+
+    const numOfReplies = generateRandomNumber(3);
+
+    for (let j = 0; j < numOfReplies; j++) {
+      const subComment = generateRandomComment(rootComment.id, rootComment.depth + 1);
+
+      rootComment.replies.push(subComment);
+
+      const numOfReplies = generateRandomNumber(3);
+
+      for (let x = 0; x < numOfReplies; x++) {
+        const subComment2 = generateRandomComment(subComment.id, subComment.depth + 1)
+
+        subComment.replies.push(subComment2);
+
+        const numOfReplies = generateRandomNumber(3);
+
+        for (let y = 0; y < numOfReplies; y++) {
+          const subComment3 = generateRandomComment(subComment2.id, subComment2.depth + 1);
+
+          subComment2.replies.push(subComment3);
+
+          const numOfReplies = generateRandomNumber(1);
+
+          for (let z = 0; z < numOfReplies; z++) {
+            const subComment4 = generateRandomComment(subComment3.id, subComment3.depth + 1);
+
+            subComment3.replies.push(subComment4);
+          }
+        }
+      }
+    }
+
+    testData.push(rootComment);
+  }
+
+  return testData;
+}
+
+const testData = createComments(5);
 
 const App: React.FC = () => {
+  const [parentIdsClicked, setParentIdsClicked] = useState<string[]>([]);
+
+  const addParentId = (parentIdClicked: string) => {
+    setParentIdsClicked((prevParentIdsClicked) => [...prevParentIdsClicked, parentIdClicked]);
+  }
+
+  const removeParentId = (parentIdRemoved: string) => {
+    setParentIdsClicked((prevParentIdsClicked) => prevParentIdsClicked.filter((parentId) => parentId !== parentIdRemoved));
+  }
+
   return (
     <div className="main-container">
       {/* TODO: Add ability to enable and disable threads */}
+      {/* TODO: Add ability to enable and disable Actions */}
+      {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
+      {/* TODO: Performance issues. Delays in ThreadClicks when # of comments is large. Delays in Hover outside of first comment thread. Potentially candidates for Context API */}
+      {/* TODO: Push new comment to top of replies list */}
       {
         testData.map((comment, idx) =>
           <ThreadedCommentGroup
@@ -56,6 +102,9 @@ const App: React.FC = () => {
             rootComment={comment}
             replies={comment.replies}
             parentIdBreadcrumbs={[comment.id]}
+            parentIdsClicked={parentIdsClicked}
+            onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
+            onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
           />
         )
       }

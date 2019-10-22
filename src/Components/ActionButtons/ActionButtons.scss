@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+.action-buttons {
+    position: absolute;
+    margin: 1em 0 0 0.68em;
+    max-height: $vote-buttons-height;
+    text-align: center;
+}
+
+.action-buttons > button {
+    display: block;
+    color: $action-button-color;
+
+    background: transparent;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    padding: initial;
+    outline: 0;
+}
+
+.expand-button {
+    color: $accent-color;
+}
+
+.expand-button:hover {
+    color: $accent-color-hover;
+}

@@ -1,5 +1,7 @@
 $accent-color: #E6194B;
+$accent-color-hover: rgb(164, 21, 57);
 $accent-color75: #EF6C8C;
+$accent-color50: rgb(230, 167, 184);
 
 $thread-color: lightgrey;
 $thread-color-hovered: $accent-color;
@@ -7,7 +9,8 @@ $thread-margin-left: 5px;
 $thread-width: 16px;
 $thread-line-width: 2px;
 
-$meta-data-color: rgb(167, 166, 166);
+$meta-data-color: darkgrey;
+$meta-data-color50: lightgrey;
 $action-button-color: darkgrey;
 $action-button-hover-color: rgb(91, 91, 91);
 

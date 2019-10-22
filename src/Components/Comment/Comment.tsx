@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { CommentModel } from '../../Models/CommentModel';
 import './Comment.scss';
 import ReplyBox from '../ReplyBox/ReplyBox';
 import TimeAgo from 'react-timeago';
+import { classList } from '../../Helpers/classList';
 
 interface CommentProps {
-    comment: CommentModel
+    comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
+    isCollapsed: boolean;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
@@ -28,26 +30,52 @@ const Comment: React.FC<CommentProps> = (props) => {
         <div>
             <div className="comment-container">
                 <div className="comment-row comment-header">
-                    <a className="comment-row-item author">
+                    <a className={classList({
+                        "comment-row-item": true,
+                        "comment-row-item-author": true,
+                        "comment-row-item-author-collapsed": props.isCollapsed,
+                        })}
+                    >
                         {props.comment.author}
                     </a>
-                    <div className="comment-row-item">
+                    <div className={classList({
+                        "comment-row-item": true,
+                        "comment-row-item-collapsed": props.isCollapsed
+                        })}
+                    >
                         5k points
                     </div>
-                    <div className="comment-row-item">
+                    <div className={classList({
+                        "comment-row-item": true,
+                        "comment-row-item-collapsed": props.isCollapsed
+                        })}
+                    >
                         ·
                     </div>
-                    <div className="comment-row-item">
+                    <div className={classList({
+                        "comment-row-item": true,
+                        "comment-row-item-collapsed": props.isCollapsed
+                        })}
+                    >
                         <TimeAgo
                             date={props.comment.createDate}
                             live={false}
                         />
                     </div>
                 </div>
-                <div className="comment-body">
+                <div className={classList({
+                    "comment-body": true,
+                    "hidden": props.isCollapsed
+                    })}
+                >
                     {props.comment.text}
                 </div>
-                <div className="comment-row comment-footer">
+                <div className={classList({
+                    "comment-row": true,
+                    "comment-footer": true,
+                    "hidden": props.isCollapsed
+                    })}
+                >
                     <button
                         className="comment-row-item"
                         onClick={() => setShowReplyBox(!showReplyBox)}>
@@ -61,9 +89,10 @@ const Comment: React.FC<CommentProps> = (props) => {
                         Save
                     </button>
                 </div>
-                <div
-                    className="comment-row"
-                    style={{ display: showReplyBox ? "" : "none" }}
+                <div className={classList({
+                        "comment-row": true,
+                        "hidden": !showReplyBox || props.isCollapsed
+                    })}
                 >
                     <ReplyBox
                         onReplyClick={(replyText) => {
