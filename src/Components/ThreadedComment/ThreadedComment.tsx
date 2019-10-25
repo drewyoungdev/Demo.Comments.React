@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ThreadGroup from '../ThreadGroup/ThreadGroup';
-import VoteableComment from '../ActionableComment/ActionableComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedComment.scss';
+import ActionableComment from '../ActionableComment/ActionableComment';
 
 interface ThreadedCommentProps {
     comment: CommentModel;
     parentIdBreadcrumbs: string[];
-    parentIdsClicked: string[];
-    parentIdHovered: string | null;
-    onThreadHover: (parentIdHovered: string | null) => void;
-    onThreadClick: (parentIdClicked: string) => void;
     addNewComment: (newComment: CommentModel) => void;
-    isCollapsed: boolean;
-    onExpandClick: (parentIdClicked: string) => void;
+    // parentIdsClicked: string[];
+    // parentIdHovered: string | null;
+    // onThreadHover: (parentIdHovered: string | null) => void;
+    // isCollapsed: boolean;
+    // onThreadClick: (parentIdClicked: string) => void;
+    // onExpandClick: (parentIdClicked: string) => void;
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
+    const [depth] = useState<number>(props.comment.depth);
+    const [parentBreadCrumbs] = useState<string[]>(props.parentIdBreadcrumbs);
+
     return (
         <div className="thread-group-container">
-            <ThreadGroup {...props} />
-            <VoteableComment {...props} />
+            <ThreadGroup
+                depth={depth}
+                parentIdBreadcrumbs={parentBreadCrumbs}
+            />
+            <ActionableComment {...props} />
         </div>
     );
 }

@@ -8,7 +8,7 @@ import { classList } from '../../Helpers/classList';
 interface CommentProps {
     comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
-    isCollapsed: boolean;
+    // isCollapsed: boolean;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {
@@ -33,28 +33,28 @@ const Comment: React.FC<CommentProps> = (props) => {
                     <a className={classList({
                         "comment-row-item": true,
                         "comment-row-item-author": true,
-                        "comment-row-item-author-collapsed": props.isCollapsed,
+                        // "comment-row-item-author-collapsed": props.isCollapsed,
                         })}
                     >
                         {props.comment.author}
                     </a>
                     <div className={classList({
                         "comment-row-item": true,
-                        "comment-row-item-collapsed": props.isCollapsed
+                        // "comment-row-item-collapsed": props.isCollapsed
                         })}
                     >
                         5k points
                     </div>
                     <div className={classList({
                         "comment-row-item": true,
-                        "comment-row-item-collapsed": props.isCollapsed
+                        // "comment-row-item-collapsed": props.isCollapsed
                         })}
                     >
                         ·
                     </div>
                     <div className={classList({
                         "comment-row-item": true,
-                        "comment-row-item-collapsed": props.isCollapsed
+                        // "comment-row-item-collapsed": props.isCollapsed
                         })}
                     >
                         <TimeAgo
@@ -65,7 +65,7 @@ const Comment: React.FC<CommentProps> = (props) => {
                 </div>
                 <div className={classList({
                     "comment-body": true,
-                    "hidden": props.isCollapsed
+                    // "hidden": props.isCollapsed
                     })}
                 >
                     {props.comment.text}
@@ -73,7 +73,7 @@ const Comment: React.FC<CommentProps> = (props) => {
                 <div className={classList({
                     "comment-row": true,
                     "comment-footer": true,
-                    "hidden": props.isCollapsed
+                    // "hidden": props.isCollapsed
                     })}
                 >
                     <button
@@ -91,7 +91,8 @@ const Comment: React.FC<CommentProps> = (props) => {
                 </div>
                 <div className={classList({
                         "comment-row": true,
-                        "hidden": !showReplyBox || props.isCollapsed
+                        "hidden": !showReplyBox
+                        // || props.isCollapsed
                     })}
                 >
                     <ReplyBox
