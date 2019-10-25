@@ -26,7 +26,6 @@ const Thread: React.FC<ThreadProps> = (props) => {
                             classList({
                                 "thread-line": true,
                                 "root-thread-line": props.isRootThread,
-                                // "root-thread-line hidden": props.isRootThread && props.isCollapsed,
                                 "thread-line-hovered": parentIdHovered === props.parentId
                             })
                         } />

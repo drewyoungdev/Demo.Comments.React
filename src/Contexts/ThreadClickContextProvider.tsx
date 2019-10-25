@@ -14,17 +14,21 @@ class ThreadClickContextProvider extends Component<{}, ThreadClickState> {
     }
 
     openThread = (parentId: string) => {
+        var index = this.state.parentIdsClosed.indexOf(parentId);
+        this.setState(prevState => ({
+            parentIdsClosed: [...prevState.parentIdsClosed.slice(0,index), ...prevState.parentIdsClosed.slice(index+1)]
+        }));
     }
 
     closeThread = (parentId: string) => {
         this.setState(prevState => ({
             parentIdsClosed: [...prevState.parentIdsClosed, parentId]
-        }))
+        }));
     }
 
     isThreadClosed = (parentId: string): boolean => {
-        console.log('hello');
-        return this.state.parentIdsClosed.includes(parentId);;
+        console.log('isThreadClosed checked');
+        return this.state.parentIdsClosed.includes(parentId);
     }
 
     render () {

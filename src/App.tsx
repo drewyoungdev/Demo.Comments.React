@@ -75,7 +75,7 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   return testData;
 }
 
-const testData = createComments(3);
+const testData = createComments(5);
 
 const App: React.FC = () => {
   return (

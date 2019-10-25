@@ -9,6 +9,7 @@ interface ThreadedCommentGroupWithContextProps {
     replies: CommentModel[];
 }
 
+// Technically this is just the "RootComment"
 const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextProps> = (props) => {
     return (
         <ThreadHoverContextProvider>
