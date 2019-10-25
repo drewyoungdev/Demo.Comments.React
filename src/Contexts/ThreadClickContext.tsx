@@ -1,17 +1,11 @@
 import React from 'react';
 
-type ThreadContext = {
-    parentIdHovered: string | null;
-    hoverThread: (parentId: string | null) => void;
+type ThreadClickContext = {
     closeThread: (parentId: string) => void;
     isThreadClosed: (parentId: string) => boolean;
   };
 
-export default React.createContext<ThreadContext>({
-    parentIdHovered: null,
-    hoverThread: () => {
-        throw new Error('toggleParentIdHovered() not implemented');
-    },
+export default React.createContext<ThreadClickContext>({
     closeThread: () => {
         throw new Error('closeThread() not implemented');
     },

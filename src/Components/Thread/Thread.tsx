@@ -1,7 +1,7 @@
 import React from 'react';
 import './Thread.scss';
 import { classList } from '../../Helpers/classList';
-import ThreadContext from '../../Contexts/ThreadContext';
+import ThreadHoverContext from '../../Contexts/ThreadHoverContext';
 
 interface ThreadProps {
     isRootThread: boolean;
@@ -11,13 +11,13 @@ interface ThreadProps {
 const Thread: React.FC<ThreadProps> = (props) => {
     console.log('rendered Thread');
     return (
-        <ThreadContext.Consumer>
-            {({ parentIdHovered, hoverThread, closeThread }) => (
+        <ThreadHoverContext.Consumer>
+            {({ parentIdHovered, hoverThread }) => (
                 <div
                     className="thread"
                     onMouseOver={() => hoverThread(props.parentId)}
                     onMouseOut={() => hoverThread(null)}
-                    onClick={() => closeThread(props.parentId)}
+                    // onClick={() => closeThread(props.parentId)}
                 >
                 <i className={
                     classList({
@@ -29,7 +29,7 @@ const Thread: React.FC<ThreadProps> = (props) => {
                 } />
                 </div>
             )}
-        </ThreadContext.Consumer>
+        </ThreadHoverContext.Consumer>
     );
 }
 

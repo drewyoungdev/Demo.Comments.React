@@ -1,22 +1,16 @@
-import React from 'react';
-import { Component } from "react";import ThreadContext from './ThreadContext';
+import React, { Component } from 'react';
+import ThreadClickContext from './ThreadClickContext';
 
-type ThreadState = {
-    parentIdHovered: string | null;
+type ThreadClickState = {
     parentIdsClicked: string[];
 }
 
-class ThreadContextProvider extends Component<{}, ThreadState> {
+class ThreadClickContextProvider extends Component<{}, ThreadClickState> {
     constructor(props: {}) {
         super(props)
         this.state = {
-            parentIdHovered: null,
             parentIdsClicked: [] as string[]
         }
-    }
-
-    hoverThread = (parentId: string | null) => {
-        this.setState({ parentIdHovered: parentId})
     }
 
     closeThread = (parentId: string) => {
@@ -28,18 +22,16 @@ class ThreadContextProvider extends Component<{}, ThreadState> {
 
     render () {
         return(
-            <ThreadContext.Provider
+            <ThreadClickContext.Provider
                 value={{
-                    parentIdHovered: this.state.parentIdHovered,
-                    hoverThread: this.hoverThread,
                     closeThread: this.closeThread,
                     isThreadClosed: this.isThreadClosed
                 }}
             >
                 {this.props.children}
-            </ThreadContext.Provider>
+            </ThreadClickContext.Provider>
         )
     }
 }
 
-export default ThreadContextProvider;
+export default ThreadClickContextProvider;
