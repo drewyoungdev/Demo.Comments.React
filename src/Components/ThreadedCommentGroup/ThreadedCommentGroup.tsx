@@ -17,6 +17,7 @@ interface ThreadedCommentGroupProps {
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
+    console.log('rendered ThreadedCommentGroup');
     const [replies, setReplies] = useState<CommentModel[]>(props.replies);
 
     // const isCollapsed = (props: ThreadedCommentGroupProps): boolean => {

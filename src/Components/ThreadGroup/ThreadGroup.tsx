@@ -32,7 +32,7 @@ const renderThreads = (depth: number, parentIdBreadcrumbs: string[]) => {
 }
 
 const ThreadGroup: React.FC<ThreadGroupProps> = (props) => {
-
+    console.log('rendered ThreadGroup');
     return (
         <div className="thread-group">
             {renderThreads(props.depth, props.parentIdBreadcrumbs)}

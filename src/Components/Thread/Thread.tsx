@@ -1,7 +1,7 @@
 import React from 'react';
 import './Thread.scss';
 import { classList } from '../../Helpers/classList';
-import ThreadHoveredContext from '../../Contexts/ThreadHoveredContext';
+import ThreadContext from '../../Contexts/ThreadContext';
 
 interface ThreadProps {
     isRootThread: boolean;
@@ -13,10 +13,9 @@ interface ThreadProps {
 }
 
 const Thread: React.FC<ThreadProps> = (props) => {
-    // look into useCallback hook for onThreadHover and onThreadClick or Context API
-
+    console.log('rendered Thread');
     return (
-        <ThreadHoveredContext.Consumer>
+        <ThreadContext.Consumer>
             {({ parentIdHovered, toggleParentIdHovered}) => (
                 <div
                     className="thread"
@@ -34,7 +33,7 @@ const Thread: React.FC<ThreadProps> = (props) => {
                 } />
                 </div>
             )}
-        </ThreadHoveredContext.Consumer>
+        </ThreadContext.Consumer>
     );
 }
 

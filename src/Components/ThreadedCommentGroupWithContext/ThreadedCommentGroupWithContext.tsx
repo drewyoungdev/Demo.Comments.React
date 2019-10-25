@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CommentModel } from '../../Models/CommentModel';
-import ThreadHoveredContext from '../../Contexts/ThreadHoveredContext';
 import ThreadedCommentGroup from '../ThreadedCommentGroup/ThreadedCommentGroup';
+import ThreadContextProvider from '../../Contexts/ThreadContextProvider';
 
 
 interface ThreadedCommentGroupWithContextProps {
@@ -10,20 +10,8 @@ interface ThreadedCommentGroupWithContextProps {
 }
 
 const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextProps> = (props) => {
-    const [parentIdHovered, setParentIdHovered] = useState<string | null>(null);
-
-    const toggleParentIdHovered = (parentId: string | null) => {
-        console.log(parentIdHovered)
-        setParentIdHovered(parentId);
-    }
-
     return (
-        <ThreadHoveredContext.Provider
-            value={{
-                parentIdHovered: parentIdHovered,
-                toggleParentIdHovered: toggleParentIdHovered,
-            }}
-        >
+        <ThreadContextProvider>
             <ThreadedCommentGroup
                 rootComment={props.rootComment}
                 replies={props.replies}
@@ -32,7 +20,7 @@ const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextP
                 // onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
                 // onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
             />
-        </ThreadHoveredContext.Provider>
+        </ThreadContextProvider>
     );
 }
 export default ThreadedCommentGroupWithContext;
