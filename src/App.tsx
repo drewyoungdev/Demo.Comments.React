@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
-import ThreadedCommentGroup from './Components/ThreadedCommentGroup/ThreadedCommentGroup';
 import { CommentModel } from './Models/CommentModel';
+import ThreadedCommentGroupWithContext from './Components/ThreadedCommentGroupWithContext/ThreadedCommentGroupWithContext';
 
 const generateRandomNumber = (maxNumber: number): number => {
   return Math.floor((Math.random() * maxNumber) + 1);
@@ -78,16 +78,6 @@ const createComments = (numOfReplies: number): CommentModel[] => {
 const testData = createComments(5);
 
 const App: React.FC = () => {
-  const [parentIdsClicked, setParentIdsClicked] = useState<string[]>([]);
-
-  const addParentId = (parentIdClicked: string) => {
-    setParentIdsClicked((prevParentIdsClicked) => [...prevParentIdsClicked, parentIdClicked]);
-  }
-
-  const removeParentId = (parentIdRemoved: string) => {
-    setParentIdsClicked((prevParentIdsClicked) => prevParentIdsClicked.filter((parentId) => parentId !== parentIdRemoved));
-  }
-
   return (
     <div className="main-container">
       {/* TODO: Add ability to enable and disable threads */}
@@ -95,16 +85,13 @@ const App: React.FC = () => {
       {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
       {/* TODO: Performance issues. Delays in ThreadClicks when # of comments is large. Delays in Hover outside of first comment thread. Potentially candidates for Context API */}
       {/* TODO: Push new comment to top of replies list */}
+
       {
         testData.map((comment, idx) =>
-          <ThreadedCommentGroup
+          <ThreadedCommentGroupWithContext
             key={idx}
             rootComment={comment}
             replies={comment.replies}
-            parentIdBreadcrumbs={[comment.id]}
-            parentIdsClicked={parentIdsClicked}
-            onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
-            onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
           />
         )
       }
