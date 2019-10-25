@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ThreadedComment from '../ThreadedComment/ThreadedComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedCommentGroup.scss';
+import ThreadClickContext from '../../Contexts/ThreadClickContext';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
@@ -14,28 +15,32 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     const [replies, setReplies] = useState<CommentModel[]>(props.replies);
 
     return (
-            <div>
-                {/* Root Comment */}
-                <ThreadedComment
-                    comment={props.rootComment}
-                    addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
-                    parentIdBreadcrumbs={props.parentIdBreadcrumbs}
-                />
-                {/* <div className={ isCollapsed(props) ? "hidden" : "" }> */}
-                    {
-                        replies.map((comment, idx) =>
-                            <div key={idx}>
-                                {/* Replies */}
-                                <ThreadedCommentGroup
-                                    rootComment={comment}
-                                    replies={comment.replies}
-                                    parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
-                                />
-                            </div>
-                        )
-                    }
-                {/* </div> */}
-            </div>
+        <ThreadClickContext.Consumer>
+            {({ isThreadClosed }) => (
+                <>
+                    {/* Root Comment */}
+                    <ThreadedComment
+                        comment={props.rootComment}
+                        addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
+                        parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                    />
+                    <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
+                        {
+                            replies.map((comment, idx) =>
+                                <div key={idx}>
+                                    {/* Replies */}
+                                    <ThreadedCommentGroup
+                                        rootComment={comment}
+                                        replies={comment.replies}
+                                        parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
+                                    />
+                                </div>
+                            )
+                        }
+                    </div>
+                </>
+            )}
+        </ThreadClickContext.Consumer>
     );
 }
 

@@ -2,28 +2,36 @@ import React, { Component } from 'react';
 import ThreadClickContext from './ThreadClickContext';
 
 type ThreadClickState = {
-    parentIdsClicked: string[];
+    parentIdsClosed: string[];
 }
 
 class ThreadClickContextProvider extends Component<{}, ThreadClickState> {
     constructor(props: {}) {
         super(props)
         this.state = {
-            parentIdsClicked: [] as string[]
+            parentIdsClosed: [] as string[]
         }
     }
 
+    openThread = (parentId: string) => {
+    }
+
     closeThread = (parentId: string) => {
+        this.setState(prevState => ({
+            parentIdsClosed: [...prevState.parentIdsClosed, parentId]
+        }))
     }
 
     isThreadClosed = (parentId: string): boolean => {
-        return this.state.parentIdsClicked.includes(parentId);;
+        console.log('hello');
+        return this.state.parentIdsClosed.includes(parentId);;
     }
 
     render () {
         return(
             <ThreadClickContext.Provider
                 value={{
+                    openThread: this.openThread,
                     closeThread: this.closeThread,
                     isThreadClosed: this.isThreadClosed
                 }}
