@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import ThreadedCommentGroup from '../ThreadedCommentGroup/ThreadedCommentGroup';
 import ThreadContextProvider from '../../Contexts/ThreadContextProvider';
-
 
 interface ThreadedCommentGroupWithContextProps {
     rootComment: CommentModel;
@@ -16,9 +15,6 @@ const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextP
                 rootComment={props.rootComment}
                 replies={props.replies}
                 parentIdBreadcrumbs={[props.rootComment.id]}
-                // parentIdsClicked={parentIdsClicked}
-                // onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
-                // onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
             />
         </ThreadContextProvider>
     );

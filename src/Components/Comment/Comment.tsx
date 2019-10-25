@@ -8,7 +8,6 @@ import { classList } from '../../Helpers/classList';
 interface CommentProps {
     comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
-    // isCollapsed: boolean;
 }
 
 const Comment: React.FC<CommentProps> = (props) => {

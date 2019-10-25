@@ -6,8 +6,6 @@ import ActionButtons from '../ActionButtons/ActionButtons';
 interface ActionableCommentProps {
     comment: CommentModel;
     addNewComment: (newComment: CommentModel) => void;
-    // isCollapsed: boolean;
-    // onExpandClick: (parentIdClicked: string) => void;
 }
 
 const calcPaddingLeftPx = (depth: number): number => {

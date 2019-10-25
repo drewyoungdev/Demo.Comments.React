@@ -7,22 +7,11 @@ interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
     replies: CommentModel[];
     parentIdBreadcrumbs: string[];
-    // parentIdsClicked: string[];
-    // onThreadClick: (parentIdClicked: string) => void;
-    // onExpandClick: (parentIdClicked: string) => void;
-
-    // // recursive properties
-    // parentIdHovered?: string | null;
-    // onThreadHover?: (parentIdHovered: string | null) => void;
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     console.log('rendered ThreadedCommentGroup');
     const [replies, setReplies] = useState<CommentModel[]>(props.replies);
-
-    // const isCollapsed = (props: ThreadedCommentGroupProps): boolean => {
-    //     return props.parentIdsClicked.includes(props.rootComment.id);
-    // }
 
     return (
             <div>
@@ -31,12 +20,6 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                     comment={props.rootComment}
                     addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
                     parentIdBreadcrumbs={props.parentIdBreadcrumbs}
-                    // parentIdsClicked={props.parentIdsClicked}
-                    // parentIdHovered={props.parentIdHovered !== undefined ? props.parentIdHovered : parentIdHovered}
-                    // onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (parentIdHovered) => setParentIdHovered(parentIdHovered)}
-                    // isCollapsed={isCollapsed(props)}
-                    // onThreadClick={props.onThreadClick}
-                    // onExpandClick={props.onExpandClick}
                 />
                 {/* <div className={ isCollapsed(props) ? "hidden" : "" }> */}
                     {
@@ -47,11 +30,6 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                     rootComment={comment}
                                     replies={comment.replies}
                                     parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
-                                    // parentIdsClicked={props.parentIdsClicked}
-                                    // parentIdHovered={props.parentIdHovered !== undefined ? props.parentIdHovered : parentIdHovered}
-                                    // onThreadHover={props.onThreadHover !== undefined ? props.onThreadHover : (parentIdHovered) => setParentIdHovered(parentIdHovered)}
-                                    // onThreadClick={props.onThreadClick}
-                                    // onExpandClick={props.onExpandClick}
                                 />
                             </div>
                         )

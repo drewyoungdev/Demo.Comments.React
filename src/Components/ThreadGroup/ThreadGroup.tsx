@@ -5,10 +5,6 @@ import './ThreadGroup.scss';
 interface ThreadGroupProps {
     depth: number;
     parentIdBreadcrumbs: string[];
-    // parentIdHovered: string | null;
-    // onThreadHover: (parentIdHovered: string | null) => void;
-    // onThreadClick: (parentIdClicked: string) => void;
-    // isCollapsed: boolean;
 }
 
 const renderThreads = (depth: number, parentIdBreadcrumbs: string[]) => {
@@ -21,10 +17,6 @@ const renderThreads = (depth: number, parentIdBreadcrumbs: string[]) => {
                 key={i}
                 isRootThread={i === depth}
                 parentId={parentIdBreadcrumbs[i]}
-                // isCollapsed={props.isCollapsed}
-                // parentIdHovered={props.parentIdHovered}
-                // onThreadHover={(parentIdHovered) => props.onThreadHover(parentIdHovered)}
-                // onThreadClick={(parentIdClicked) => props.onThreadClick(parentIdClicked)}
             />);
     }
 

@@ -5,8 +5,6 @@ import ExpandButton from '../ExpandButton/ExpandButton';
 
 interface ActionButtonsProps {
     commentId: string;
-    // isCollapsed: boolean;
-    // onExpandClick: (parentIdClicked: string) => void;
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = (props: ActionButtonsProps) => {

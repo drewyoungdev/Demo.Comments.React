@@ -8,12 +8,6 @@ interface ThreadedCommentProps {
     comment: CommentModel;
     parentIdBreadcrumbs: string[];
     addNewComment: (newComment: CommentModel) => void;
-    // parentIdsClicked: string[];
-    // parentIdHovered: string | null;
-    // onThreadHover: (parentIdHovered: string | null) => void;
-    // isCollapsed: boolean;
-    // onThreadClick: (parentIdClicked: string) => void;
-    // onExpandClick: (parentIdClicked: string) => void;
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {

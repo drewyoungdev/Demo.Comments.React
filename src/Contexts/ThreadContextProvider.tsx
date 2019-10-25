@@ -3,18 +3,27 @@ import { Component } from "react";import ThreadContext from './ThreadContext';
 
 type ThreadState = {
     parentIdHovered: string | null;
+    parentIdsClicked: string[];
 }
 
 class ThreadContextProvider extends Component<{}, ThreadState> {
     constructor(props: {}) {
         super(props)
         this.state = {
-            parentIdHovered: null
+            parentIdHovered: null,
+            parentIdsClicked: [] as string[]
         }
     }
 
-    toggleParentIdHovered = (parentId: string | null) => {
+    hoverThread = (parentId: string | null) => {
         this.setState({ parentIdHovered: parentId})
+    }
+
+    closeThread = (parentId: string) => {
+    }
+
+    isThreadClosed = (parentId: string): boolean => {
+        return this.state.parentIdsClicked.includes(parentId);;
     }
 
     render () {
@@ -22,7 +31,9 @@ class ThreadContextProvider extends Component<{}, ThreadState> {
             <ThreadContext.Provider
                 value={{
                     parentIdHovered: this.state.parentIdHovered,
-                    toggleParentIdHovered: this.toggleParentIdHovered
+                    hoverThread: this.hoverThread,
+                    closeThread: this.closeThread,
+                    isThreadClosed: this.isThreadClosed
                 }}
             >
                 {this.props.children}
