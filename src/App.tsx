@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
-import ThreadedCommentGroup from './Components/ThreadedCommentGroup/ThreadedCommentGroup';
 import { CommentModel } from './Models/CommentModel';
-import ThreadHoveredContext from './Contexts/ThreadHoveredContext';
+import ThreadedCommentGroupWithContext from './Components/ThreadedCommentGroupWithContext/ThreadedCommentGroupWithContext';
 
 const generateRandomNumber = (maxNumber: number): number => {
   return Math.floor((Math.random() * maxNumber) + 1);
@@ -76,26 +75,9 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   return testData;
 }
 
-const testData = createComments(5);
+const testData = createComments(30);
 
 const App: React.FC = () => {
-  const [parentIdsClicked, setParentIdsClicked] = useState<string[]>([]);
-
-  const addParentId = (parentIdClicked: string) => {
-    setParentIdsClicked((prevParentIdsClicked) => [...prevParentIdsClicked, parentIdClicked]);
-  }
-
-  const removeParentId = (parentIdRemoved: string) => {
-    setParentIdsClicked((prevParentIdsClicked) => prevParentIdsClicked.filter((parentId) => parentId !== parentIdRemoved));
-  }
-
-  const [parentIdHovered, setParentIdHovered] = useState<string | null>(null);
-
-  const toggleParentIdHovered = (parentId: string | null) => {
-      console.log(parentIdHovered)
-      setParentIdHovered(parentId);
-  }
-
   return (
     <div className="main-container">
       {/* TODO: Add ability to enable and disable threads */}
@@ -106,23 +88,11 @@ const App: React.FC = () => {
 
       {
         testData.map((comment, idx) =>
-
-          <ThreadHoveredContext.Provider
-            value={{
-              parentIdHovered: parentIdHovered,
-              toggleParentIdHovered: toggleParentIdHovered,
-            }}
-          >
-            <ThreadedCommentGroup
-              key={idx}
-              rootComment={comment}
-              replies={comment.replies}
-              parentIdBreadcrumbs={[comment.id]}
-              // parentIdsClicked={parentIdsClicked}
-              // onThreadClick={(parentIdClicked) => addParentId(parentIdClicked)}
-              // onExpandClick={(parentIdClicked) => removeParentId(parentIdClicked)}
-            />
-          </ThreadHoveredContext.Provider>
+          <ThreadedCommentGroupWithContext
+            key={idx}
+            rootComment={comment}
+            replies={comment.replies}
+          />
         )
       }
     </div>
