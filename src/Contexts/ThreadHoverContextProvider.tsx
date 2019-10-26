@@ -15,6 +15,7 @@ class ThreadHoverContextProvider extends Component<{}, ThreadHoverState> {
     }
 
     hoverThread = (parentId: string | null) => {
+        // console.log(parentId);
         this.setState({ parentIdHovered: parentId})
     }
 

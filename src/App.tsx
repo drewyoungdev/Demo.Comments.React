@@ -75,16 +75,49 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   return testData;
 }
 
-const testData = createComments(5);
+// const testData = createComments(1);
+
+const testData = [
+  {
+    parentId: "",
+    id: "1",
+    depth: 0,
+    author:  generateRandomString(),
+    text: generateRandomText(generateRandomNumber(80)),
+    createDate: "2018-10-14T20:50:00",
+    replies: [
+      {
+        parentId: "1",
+        id: "2",
+        depth: 1,
+        author:  generateRandomString(),
+        text: generateRandomText(generateRandomNumber(80)),
+        createDate: "2018-10-14T20:50:00",
+        replies: [
+          {
+            parentId: "2",
+            id: "3",
+            depth: 2,
+            author:  generateRandomString(),
+            text: generateRandomText(generateRandomNumber(80)),
+            createDate: "2018-10-14T20:50:00",
+            replies: [] as CommentModel[]
+          }
+        ] as CommentModel[]
+      }
+    ]
+  }
+]
 
 const App: React.FC = () => {
   return (
     <div className="main-container">
-      {/* TODO: Add ability to enable and disable threads */}
+      {/* TODO: Add ability to enable and disable Threads */}
       {/* TODO: Add ability to enable and disable Actions */}
       {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
-      {/* TODO: Performance issues. Delays in ThreadClicks when # of comments is large. Delays in Hover outside of first comment thread. Potentially candidates for Context API */}
+      {/* TODO: Allow VoteButtons to 'undo' action */}
       {/* TODO: Push new comment to top of replies list */}
+      {/* TODO: Re-organize folder structure and use dot notation to for unshareable components */}
 
       {
         testData.map((comment, idx) =>

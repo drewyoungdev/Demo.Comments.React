@@ -11,15 +11,12 @@ interface ThreadedCommentProps {
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
-    console.log('rendered ThreadedCommentGroup');
-    const [depth] = useState<number>(props.comment.depth);
-    const [parentBreadCrumbs] = useState<string[]>(props.parentIdBreadcrumbs);
-
+    console.log('rendered ThreadedComment');
     return (
         <div className="thread-group-container">
             <ThreadGroup
-                depth={depth}
-                parentIdBreadcrumbs={parentBreadCrumbs}
+                depth={props.comment.depth}
+                parentIdBreadcrumbs={props.parentIdBreadcrumbs}
             />
             <ActionableComment {...props} />
         </div>

@@ -24,16 +24,11 @@ const calcPaddingLeftPx = (depth: number): number => {
     return paddingLeftFromRootThread + paddingLeftFromThreadGroup;
 }
 
-// May want to rename to just ActionComment so client has ability to just have regular Threaded Comments with no Vote ability
 const ActionableComment: React.FC<ActionableCommentProps> = (props) => {
     return (
         <>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 33}}>
-                <ActionButtons
-                    commentId={props.comment.id}
-                    // isCollapsed={props.isCollapsed}
-                    // onExpandClick={props.onExpandClick}
-                />
+                <ActionButtons commentId={props.comment.id} />
             </div>
             <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
                 <Comment {...props} />

@@ -6,13 +6,18 @@ import ThreadClickContext from '../../Contexts/ThreadClickContext';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
-    replies: CommentModel[];
     parentIdBreadcrumbs: string[];
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     console.log('rendered ThreadedCommentGroup');
-    const [replies, setReplies] = useState<CommentModel[]>(props.replies);
+
+    // Each comment group controls it's own set of replies
+    // However, when a functional component is initialized with "props" we get some issues
+    // Right now it's receiving the state of the previous replies when a new comment is pushed to the top of the stack
+    const [replies, setReplies] = useState<CommentModel[]>([...props.rootComment.replies]);
+
+    console.log(props.parentIdBreadcrumbs, props.rootComment)
 
     return (
         <ThreadClickContext.Consumer>
@@ -21,8 +26,9 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                     {/* Root Comment */}
                     <ThreadedComment
                         comment={props.rootComment}
-                        addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
                         parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                        addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
+                        // addNewComment={(newComment) => setReplies((prevReplies) => [...prevReplies, newComment])}
                     />
                     <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
                         {
@@ -31,7 +37,6 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                     {/* Replies */}
                                     <ThreadedCommentGroup
                                         rootComment={comment}
-                                        replies={comment.replies}
                                         parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
                                     />
                                 </div>
