@@ -4,6 +4,7 @@ import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedCommentGroup.scss';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
 import MoreReplies from '../MoreReplies/MoreReplies';
+import { classList } from '../../Helpers/classList';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
@@ -21,12 +22,14 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
             {({ isThreadClosed }) => (
                 <>
                     {/* Root Comment */}
-                    <ThreadedComment
-                        comment={props.rootComment}
-                        parentIdBreadcrumbs={props.parentIdBreadcrumbs}
-                        depth={props.depth}
-                        addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
-                    />
+                    <div className="comment-group-item">
+                        <ThreadedComment
+                            comment={props.rootComment}
+                            parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                            depth={props.depth}
+                            addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
+                        />
+                    </div>
                     <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
                         {
                             replies.map((comment) =>
@@ -40,7 +43,12 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                 </div>
                             )
                         }
-                        <div className={ props.rootComment.numOfHiddenReplies === 0 || isMoreRepliesLoaded ? "hidden" : "" }>
+                        <div
+                            className={classList({
+                                "comment-group-item": true,
+                                "hidden": props.rootComment.numOfHiddenReplies === 0 || isMoreRepliesLoaded
+                            })}
+                        >
                             {/* More Replies */}
                             {
                                 <MoreReplies

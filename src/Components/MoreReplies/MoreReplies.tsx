@@ -13,14 +13,26 @@ interface MoreRepliesProps {
 }
 
 const getReplies = (commentId: string): CommentModel[] => {
+    const commentFromServerId = Math.random().toString(36).substring(7);
+
     const replies = [
         {
             parentId: commentId,
-            id: Math.random().toString(36).substring(7),
+            id: commentFromServerId,
             author: "current logged in user",
             text: "more replies!",
             createDate: new Date().toISOString(),
-            replies: [],
+            replies: [
+                {
+                    parentId: commentFromServerId,
+                    id: Math.random().toString(36).substring(7),
+                    author: "current logged in user",
+                    text: "reply to more replies!",
+                    createDate: new Date().toISOString(),
+                    replies: [],
+                    numOfHiddenReplies: 0
+                }
+            ],
             numOfHiddenReplies: 0
         }
     ]
@@ -32,7 +44,7 @@ const MoreReplies: React.FC<MoreRepliesProps> = (props) => {
     // console.log('rendered MoreReplies');
 
     return (
-        <div className="thread-group-container">
+        <>
             <ThreadGroup
                 depth={props.depth}
                 parentIdBreadcrumbs={props.parentIdBreadcrumbs}
@@ -46,7 +58,7 @@ const MoreReplies: React.FC<MoreRepliesProps> = (props) => {
                     {props.numOfHiddenReplies} more {props.numOfHiddenReplies === 1 ? "reply" : "replies"}
                 </p>
             </div>
-        </div>
+        </>
     );
 }
 

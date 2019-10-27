@@ -3,8 +3,12 @@ import './App.scss';
 import { CommentModel } from './Models/CommentModel';
 import ThreadedCommentGroupWithContext from './Components/ThreadedCommentGroupWithContext/ThreadedCommentGroupWithContext';
 
-const generateRandomNumber = (maxNumber: number): number => {
-  return Math.floor((Math.random() * maxNumber) + 1);
+const generateRandomNumber = (maxNumber: number, includeZero?: boolean): number => {
+  if (includeZero === undefined || !includeZero) {
+    return Math.floor((Math.random() * maxNumber) + 1);
+  }
+
+  return Math.floor((Math.random() * maxNumber));
 }
 
 const generateRandomString = (): string => {
@@ -27,7 +31,7 @@ const generateRandomComment = (parentId: string): CommentModel => {
     text: generateRandomText(generateRandomNumber(80)),
     createDate: "2018-10-14T20:50:00",
     replies: [] as CommentModel[],
-    numOfHiddenReplies: 1
+    numOfHiddenReplies: generateRandomNumber(4, true)
   }
 }
 
@@ -120,6 +124,9 @@ const App: React.FC = () => {
       {/* Functionality TODOS */}
       {/* Add ability to display more replies */}
       {/* Add ability to track number of children when thread is closed */}
+
+      {/* Styling TODOS */}
+      {/* Fix ReplyBox styling */}
 
       {/* Refactor TODOS */}
       {/* Make 'hidden' a global style */}
