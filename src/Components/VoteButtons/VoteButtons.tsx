@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 import './VoteButtons.scss';
 import { classList } from '../../Helpers/classList';
 
+interface VoteRequest {
+    // HTTP 429 is used to prevent bot voting from making too many subsequent requests
+    id: string;
+    direction: number; // 1 upvote, 0 unvote, -1 downvote
+}
+
 interface VoteButtonsProps {
     commentId: string;
-    onUpvoteClick: (commentId: string) => void;
-    onDownvoteClick: (commentId: string) => void;
+    onVote: (voteRequest: VoteRequest) => void;
 }
 
 const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
-    const [isUpvoteSelected, setIsUpvoteSelected] = useState<boolean>(false);
-    const [isDownvoteSelected, setIsDownvotedSelected] = useState<boolean>(false);
+    const [voteDirection, setVoteDirection] = useState<number>(0);
 
     return (
         <div className="action-buttons">
             <button onClick={() =>
                 {
-                    props.onUpvoteClick(props.commentId);
-                    setIsUpvoteSelected(true);
-                    setIsDownvotedSelected(false);
+                    var selectedVoteDirection = voteDirection === 1 ? 0 : 1;
+
+                    setVoteDirection(selectedVoteDirection);
+
+                    props.onVote({ id: props.commentId, direction: selectedVoteDirection });
                 }}>
                 <i
                     className={classList({
@@ -26,15 +32,17 @@ const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
                         "arrow": true,
                         "up": true,
                         "icon": true,
-                        "upvote-selected": isUpvoteSelected
+                        "upvote-selected": voteDirection === 1
                     })}
                 />
             </button>
             <button onClick={() =>
                 {
-                    props.onDownvoteClick(props.commentId);
-                    setIsDownvotedSelected(true);
-                    setIsUpvoteSelected(false);
+                    var selectedVoteDirection = voteDirection === -1 ? 0 : -1;
+
+                    setVoteDirection(selectedVoteDirection);
+
+                    props.onVote({ id: props.commentId, direction: selectedVoteDirection });
                 }}>
                 <i
                     className={classList({
@@ -42,7 +50,7 @@ const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
                         "arrow": true,
                         "down": true,
                         "icon": true,
-                        "downvote-selected": isDownvoteSelected
+                        "downvote-selected": voteDirection === -1
                     })}
                 />
             </button>

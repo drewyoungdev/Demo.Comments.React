@@ -75,7 +75,7 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   return testData;
 }
 
-const testData = createComments(50);
+const testData = createComments(1);
 
 // const testData = [
 //   {
@@ -121,10 +121,12 @@ const testData = createComments(50);
 const App: React.FC = () => {
   return (
     <div className="main-container">
+      {/* TODO: Add ability to display more replies */}
+      {/* TODO: Add ability to track number of children when thread is closed */}
+      {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
+      {/* TODO: Add ability to highlight user if current logged in user was author */}
       {/* TODO: Add ability to enable and disable Threads */}
       {/* TODO: Add ability to enable and disable Actions */}
-      {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
-      {/* TODO: Allow VoteButtons to 'undo' action */}
       {/* TODO: Re-organize folder structure and use dot notation to for unshareable components */}
 
       {

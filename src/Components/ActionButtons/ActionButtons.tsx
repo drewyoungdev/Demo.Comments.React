@@ -16,8 +16,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = (props: ActionButtonsProps) 
                     <div className={ isThreadClosed(props.commentId) ? "hidden" : ""}>
                         <VoteButtons
                             commentId={props.commentId}
-                            onUpvoteClick={console.log}
-                            onDownvoteClick={console.log}
+                            onVote={console.log}
                         />
                     </div>
                     <div className={ isThreadClosed(props.commentId) ? "" : "hidden"}>
