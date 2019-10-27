@@ -3,6 +3,7 @@ import ThreadedComment from '../ThreadedComment/ThreadedComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedCommentGroup.scss';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
+import MoreReplies from '../MoreReplies/MoreReplies';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
@@ -13,6 +14,7 @@ interface ThreadedCommentGroupProps {
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     // console.log('rendered ThreadedCommentGroup');
     const [replies, setReplies] = useState<CommentModel[]>(props.rootComment.replies);
+    const [isMoreRepliesLoaded, setIsMoreRepliesLoaded] = useState<boolean>(false);
 
     return (
         <ThreadClickContext.Consumer>
@@ -38,6 +40,23 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                 </div>
                             )
                         }
+                        <div className={ props.rootComment.numOfHiddenReplies === 0 || isMoreRepliesLoaded ? "hidden" : "" }>
+                            {/* More Replies */}
+                            {
+                                <MoreReplies
+                                    commentId={props.rootComment.id}
+                                    numOfHiddenReplies={props.rootComment.numOfHiddenReplies}
+                                    depth={props.depth + 1}
+                                    parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                                    loadMoreReplies={(replies) =>
+                                        {
+                                            setIsMoreRepliesLoaded(true);
+                                            setReplies((prevReplies) => [...prevReplies, ...replies]);
+                                        }
+                                    }
+                                />
+                            }
+                        </div>
                     </div>
                 </>
             )}

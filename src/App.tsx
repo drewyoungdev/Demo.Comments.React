@@ -26,7 +26,8 @@ const generateRandomComment = (parentId: string): CommentModel => {
     author:  generateRandomString(),
     text: generateRandomText(generateRandomNumber(80)),
     createDate: "2018-10-14T20:50:00",
-    replies: [] as CommentModel[]
+    replies: [] as CommentModel[],
+    numOfHiddenReplies: 1
   }
 }
 
@@ -116,14 +117,23 @@ const testData = createComments(1);
 const App: React.FC = () => {
   return (
     <div className="main-container">
-      {/* TODO: Make 'hidden' a global style */}
-      {/* TODO: Add ability to display more replies */}
-      {/* TODO: Add ability to track number of children when thread is closed */}
-      {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
-      {/* TODO: Add ability to highlight user if current logged in user was author */}
-      {/* TODO: Add ability to enable and disable Threads */}
-      {/* TODO: Add ability to enable and disable Actions */}
-      {/* TODO: Re-organize folder structure and use dot notation to for unshareable components */}
+      {/* Functionality TODOS */}
+      {/* Add ability to display more replies */}
+      {/* Add ability to track number of children when thread is closed */}
+
+      {/* Refactor TODOS */}
+      {/* Make 'hidden' a global style */}
+      {/* Refactor classList into typescript file */}
+
+      {/* User Login TODOS */}
+      {/* Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
+      {/* Add ability to highlight user if current logged in user was author */}
+
+      {/* Package Consumer TODOS */}
+      {/* Add ability to enable and disable Threads */}
+      {/* Add ability to enable and disable Actions */}
+      {/* Make alternative design to mimic Facebook */}
+      {/* Re-organize folder structure and use dot notation to for unshareable components */}
 
       {
         testData.map((comment) =>
