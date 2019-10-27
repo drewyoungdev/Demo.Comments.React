@@ -20,7 +20,6 @@ const Comment: React.FC<CommentProps> = (props) => {
             id: Math.random().toString(36).substring(7),
             author: "current logged in user",
             text: text,
-            depth: props.comment.depth + 1,
             createDate: new Date().toISOString(),
             replies: []
         });

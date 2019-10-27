@@ -5,6 +5,7 @@ import ActionButtons from '../ActionButtons/ActionButtons';
 
 interface ActionableCommentProps {
     comment: CommentModel;
+    depth: number;
     addNewComment: (newComment: CommentModel) => void;
 }
 
@@ -27,10 +28,10 @@ const calcPaddingLeftPx = (depth: number): number => {
 const ActionableComment: React.FC<ActionableCommentProps> = (props) => {
     return (
         <>
-            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth) - 33}}>
+            <div style={{ paddingLeft: calcPaddingLeftPx(props.depth) - 33}}>
                 <ActionButtons commentId={props.comment.id} />
             </div>
-            <div style={{ paddingLeft: calcPaddingLeftPx(props.comment.depth)}}>
+            <div style={{ paddingLeft: calcPaddingLeftPx(props.depth)}}>
                 <Comment {...props} />
             </div>
         </>

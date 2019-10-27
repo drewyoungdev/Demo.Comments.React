@@ -19,11 +19,10 @@ const generateRandomText = (numOfWords: number): string => {
   return text.join(" ");
 }
 
-const generateRandomComment = (parentId: string, depth: number): CommentModel => {
+const generateRandomComment = (parentId: string): CommentModel => {
   return {
     parentId: parentId,
     id: generateRandomString(),
-    depth: depth,
     author:  generateRandomString(),
     text: generateRandomText(generateRandomNumber(80)),
     createDate: "2018-10-14T20:50:00",
@@ -35,33 +34,33 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   let testData = [] as CommentModel[];
 
   for (let i = 0; i < numOfReplies; i++) {
-    const rootComment = generateRandomComment("", 0);
+    const rootComment = generateRandomComment("");
 
     const numOfReplies = generateRandomNumber(3);
 
     for (let j = 0; j < numOfReplies; j++) {
-      const subComment = generateRandomComment(rootComment.id, rootComment.depth + 1);
+      const subComment = generateRandomComment(rootComment.id);
 
       rootComment.replies.push(subComment);
 
       const numOfReplies = generateRandomNumber(3);
 
       for (let x = 0; x < numOfReplies; x++) {
-        const subComment2 = generateRandomComment(subComment.id, subComment.depth + 1)
+        const subComment2 = generateRandomComment(subComment.id)
 
         subComment.replies.push(subComment2);
 
         const numOfReplies = generateRandomNumber(3);
 
         for (let y = 0; y < numOfReplies; y++) {
-          const subComment3 = generateRandomComment(subComment2.id, subComment2.depth + 1);
+          const subComment3 = generateRandomComment(subComment2.id);
 
           subComment2.replies.push(subComment3);
 
           const numOfReplies = generateRandomNumber(1);
 
           for (let z = 0; z < numOfReplies; z++) {
-            const subComment4 = generateRandomComment(subComment3.id, subComment3.depth + 1);
+            const subComment4 = generateRandomComment(subComment3.id);
 
             subComment3.replies.push(subComment4);
           }
@@ -81,7 +80,6 @@ const testData = createComments(1);
 //   {
 //     parentId: "",
 //     id: "1",
-//     depth: 0,
 //     author:  generateRandomString(),
 //     text: "1",
 //     createDate: "2018-10-14T20:50:00",
@@ -89,7 +87,6 @@ const testData = createComments(1);
 //       {
 //         parentId: "1",
 //         id: "2",
-//         depth: 1,
 //         author:  generateRandomString(),
 //         text: "2",
 //         createDate: "2018-10-14T20:50:00",
@@ -97,7 +94,6 @@ const testData = createComments(1);
 //           {
 //             parentId: "2",
 //             id: "2a",
-//             depth: 2,
 //             author:  generateRandomString(),
 //             text: "2a",
 //             createDate: "2018-10-14T20:50:00",
@@ -106,7 +102,6 @@ const testData = createComments(1);
 //           {
 //             parentId: "2",
 //             id: "2b",
-//             depth: 2,
 //             author:  generateRandomString(),
 //             text: "2b",
 //             createDate: "2018-10-14T20:50:00",
@@ -121,6 +116,7 @@ const testData = createComments(1);
 const App: React.FC = () => {
   return (
     <div className="main-container">
+      {/* TODO: Make 'hidden' a global style */}
       {/* TODO: Add ability to display more replies */}
       {/* TODO: Add ability to track number of children when thread is closed */}
       {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}

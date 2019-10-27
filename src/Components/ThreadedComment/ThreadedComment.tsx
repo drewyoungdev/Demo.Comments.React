@@ -7,6 +7,7 @@ import ActionableComment from '../ActionableComment/ActionableComment';
 interface ThreadedCommentProps {
     comment: CommentModel;
     parentIdBreadcrumbs: string[];
+    depth: number;
     addNewComment: (newComment: CommentModel) => void;
 }
 
@@ -15,7 +16,7 @@ const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
     return (
         <div className="thread-group-container">
             <ThreadGroup
-                depth={props.comment.depth}
+                depth={props.depth}
                 parentIdBreadcrumbs={props.parentIdBreadcrumbs}
             />
             <ActionableComment {...props} />

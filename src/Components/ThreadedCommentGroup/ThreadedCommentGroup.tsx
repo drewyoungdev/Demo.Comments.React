@@ -7,6 +7,7 @@ import ThreadClickContext from '../../Contexts/ThreadClickContext';
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
     parentIdBreadcrumbs: string[];
+    depth: number;
 }
 
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
@@ -21,6 +22,7 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                     <ThreadedComment
                         comment={props.rootComment}
                         parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                        depth={props.depth}
                         addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
                     />
                     <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
@@ -31,6 +33,7 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                     <ThreadedCommentGroup
                                         rootComment={comment}
                                         parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
+                                        depth={props.depth + 1}
                                     />
                                 </div>
                             )

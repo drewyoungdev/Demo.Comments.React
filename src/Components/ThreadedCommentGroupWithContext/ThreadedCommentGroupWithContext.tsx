@@ -16,6 +16,7 @@ const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextP
                 <ThreadedCommentGroup
                     rootComment={props.rootComment}
                     parentIdBreadcrumbs={[props.rootComment.id]}
+                    depth={0}
                 />
             </ThreadClickContextProvider>
         </ThreadHoverContextProvider>
