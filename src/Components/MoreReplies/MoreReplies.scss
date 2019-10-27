@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.more-replies {
+    padding: 1em 0 1em 0;
+}
+
+.more-replies > p {
+    cursor: pointer;
+    color: $accent-color;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.more-replies > p:hover {
+    text-decoration: underline;
+}

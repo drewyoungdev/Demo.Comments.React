@@ -21,7 +21,8 @@ const Comment: React.FC<CommentProps> = (props) => {
             author: "current logged in user",
             text: text,
             createDate: new Date().toISOString(),
-            replies: []
+            replies: [],
+            numOfHiddenReplies: 0
         });
     }
 

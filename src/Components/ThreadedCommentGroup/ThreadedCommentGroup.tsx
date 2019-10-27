@@ -3,6 +3,8 @@ import ThreadedComment from '../ThreadedComment/ThreadedComment';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedCommentGroup.scss';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
+import MoreReplies from '../MoreReplies/MoreReplies';
+import { classList } from '../../Helpers/classList';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
@@ -13,18 +15,21 @@ interface ThreadedCommentGroupProps {
 const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     // console.log('rendered ThreadedCommentGroup');
     const [replies, setReplies] = useState<CommentModel[]>(props.rootComment.replies);
+    const [isMoreRepliesLoaded, setIsMoreRepliesLoaded] = useState<boolean>(false);
 
     return (
         <ThreadClickContext.Consumer>
             {({ isThreadClosed }) => (
                 <>
                     {/* Root Comment */}
-                    <ThreadedComment
-                        comment={props.rootComment}
-                        parentIdBreadcrumbs={props.parentIdBreadcrumbs}
-                        depth={props.depth}
-                        addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
-                    />
+                    <div className="comment-group-item">
+                        <ThreadedComment
+                            comment={props.rootComment}
+                            parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                            depth={props.depth}
+                            addNewComment={(newComment) => setReplies((prevReplies) => [newComment, ...prevReplies])}
+                        />
+                    </div>
                     <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
                         {
                             replies.map((comment) =>
@@ -38,6 +43,28 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                                 </div>
                             )
                         }
+                        <div
+                            className={classList({
+                                "comment-group-item": true,
+                                "hidden": props.rootComment.numOfHiddenReplies === 0 || isMoreRepliesLoaded
+                            })}
+                        >
+                            {/* More Replies */}
+                            {
+                                <MoreReplies
+                                    commentId={props.rootComment.id}
+                                    numOfHiddenReplies={props.rootComment.numOfHiddenReplies}
+                                    depth={props.depth + 1}
+                                    parentIdBreadcrumbs={props.parentIdBreadcrumbs}
+                                    loadMoreReplies={(replies) =>
+                                        {
+                                            setIsMoreRepliesLoaded(true);
+                                            setReplies((prevReplies) => [...prevReplies, ...replies]);
+                                        }
+                                    }
+                                />
+                            }
+                        </div>
                     </div>
                 </>
             )}

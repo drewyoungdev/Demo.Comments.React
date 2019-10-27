@@ -5,4 +5,5 @@ export interface CommentModel {
     text: string
     createDate: string
     replies: CommentModel[]
+    numOfHiddenReplies: number | 0
 }
