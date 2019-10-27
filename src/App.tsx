@@ -75,39 +75,48 @@ const createComments = (numOfReplies: number): CommentModel[] => {
   return testData;
 }
 
-// const testData = createComments(1);
+const testData = createComments(50);
 
-const testData = [
-  {
-    parentId: "",
-    id: "1",
-    depth: 0,
-    author:  generateRandomString(),
-    text: generateRandomText(generateRandomNumber(80)),
-    createDate: "2018-10-14T20:50:00",
-    replies: [
-      {
-        parentId: "1",
-        id: "2",
-        depth: 1,
-        author:  generateRandomString(),
-        text: generateRandomText(generateRandomNumber(80)),
-        createDate: "2018-10-14T20:50:00",
-        replies: [
-          {
-            parentId: "2",
-            id: "3",
-            depth: 2,
-            author:  generateRandomString(),
-            text: generateRandomText(generateRandomNumber(80)),
-            createDate: "2018-10-14T20:50:00",
-            replies: [] as CommentModel[]
-          }
-        ] as CommentModel[]
-      }
-    ]
-  }
-]
+// const testData = [
+//   {
+//     parentId: "",
+//     id: "1",
+//     depth: 0,
+//     author:  generateRandomString(),
+//     text: "1",
+//     createDate: "2018-10-14T20:50:00",
+//     replies: [
+//       {
+//         parentId: "1",
+//         id: "2",
+//         depth: 1,
+//         author:  generateRandomString(),
+//         text: "2",
+//         createDate: "2018-10-14T20:50:00",
+//         replies: [
+//           {
+//             parentId: "2",
+//             id: "2a",
+//             depth: 2,
+//             author:  generateRandomString(),
+//             text: "2a",
+//             createDate: "2018-10-14T20:50:00",
+//             replies: [] as CommentModel[]
+//           },
+//           {
+//             parentId: "2",
+//             id: "2b",
+//             depth: 2,
+//             author:  generateRandomString(),
+//             text: "2b",
+//             createDate: "2018-10-14T20:50:00",
+//             replies: [] as CommentModel[]
+//           }
+//         ] as CommentModel[]
+//       }
+//     ]
+//   }
+// ]
 
 const App: React.FC = () => {
   return (
@@ -116,15 +125,13 @@ const App: React.FC = () => {
       {/* TODO: Add ability to enable and disable Actions */}
       {/* TODO: Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
       {/* TODO: Allow VoteButtons to 'undo' action */}
-      {/* TODO: Push new comment to top of replies list */}
       {/* TODO: Re-organize folder structure and use dot notation to for unshareable components */}
 
       {
-        testData.map((comment, idx) =>
+        testData.map((comment) =>
           <ThreadedCommentGroupWithContext
-            key={idx}
+            key={comment.id}
             rootComment={comment}
-            replies={comment.replies}
           />
         )
       }

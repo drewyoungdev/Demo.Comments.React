@@ -6,7 +6,6 @@ import ThreadHoverContextProvider from '../../Contexts/ThreadHoverContextProvide
 
 interface ThreadedCommentGroupWithContextProps {
     rootComment: CommentModel;
-    replies: CommentModel[];
 }
 
 // Technically this is just the "RootComment"

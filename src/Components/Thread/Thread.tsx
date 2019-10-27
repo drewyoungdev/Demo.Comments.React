@@ -10,7 +10,7 @@ interface ThreadProps {
 }
 
 const Thread: React.FC<ThreadProps> = (props) => {
-    console.log('rendered Thread');
+    // console.log('rendered Thread');
     return (
         <ThreadHoverContext.Consumer>
             {({ parentIdHovered, hoverThread }) => (

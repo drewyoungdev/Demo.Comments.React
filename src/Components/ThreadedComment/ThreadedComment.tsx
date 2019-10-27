@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ThreadGroup from '../ThreadGroup/ThreadGroup';
 import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedComment.scss';
@@ -11,7 +11,7 @@ interface ThreadedCommentProps {
 }
 
 const ThreadedComment: React.FC<ThreadedCommentProps> = (props) => {
-    console.log('rendered ThreadedComment');
+    // console.log('rendered ThreadedComment');
     return (
         <div className="thread-group-container">
             <ThreadGroup
