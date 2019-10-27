@@ -8,7 +8,7 @@ interface ThreadGroupProps {
 }
 
 const renderThreads = (depth: number, parentIdBreadcrumbs: string[]) => {
-    console.log('recreating brand new threads...');
+    // console.log('recreating brand new threads...');
     let threads = [];
 
     for (let i = 0; i <= depth; i++) {
@@ -24,7 +24,7 @@ const renderThreads = (depth: number, parentIdBreadcrumbs: string[]) => {
 }
 
 const ThreadGroup: React.FC<ThreadGroupProps> = (props) => {
-    console.log('rendered ThreadGroup');
+    // console.log('rendered ThreadGroup');
     return (
         <div className="thread-group">
             {renderThreads(props.depth, props.parentIdBreadcrumbs)}

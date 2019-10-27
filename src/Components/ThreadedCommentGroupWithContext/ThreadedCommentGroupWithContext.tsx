@@ -6,7 +6,6 @@ import ThreadHoverContextProvider from '../../Contexts/ThreadHoverContextProvide
 
 interface ThreadedCommentGroupWithContextProps {
     rootComment: CommentModel;
-    replies: CommentModel[];
 }
 
 // Technically this is just the "RootComment"
@@ -16,7 +15,6 @@ const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextP
             <ThreadClickContextProvider>
                 <ThreadedCommentGroup
                     rootComment={props.rootComment}
-                    replies={props.replies}
                     parentIdBreadcrumbs={[props.rootComment.id]}
                 />
             </ThreadClickContextProvider>

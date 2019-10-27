@@ -27,7 +27,7 @@ class ThreadClickContextProvider extends Component<{}, ThreadClickState> {
     }
 
     isThreadClosed = (parentId: string): boolean => {
-        console.log('isThreadClosed checked');
+        // console.log('isThreadClosed checked');
         return this.state.parentIdsClosed.includes(parentId);
     }
 
