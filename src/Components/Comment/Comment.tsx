@@ -34,7 +34,7 @@ const Comment: React.FC<CommentProps> = (props) => {
                             <a className={classList({
                                 "comment-row-item": true,
                                 "comment-row-item-author": true,
-                                "comment-row-item-author-collapsed": isThreadClosed(props.comment.id),
+                                "comment-row-item-author-collapsed": isThreadClosed(props.comment.id)
                                 })}
                             >
                                 {props.comment.author}
