@@ -1,5 +1,5 @@
 import React from 'react';
-import { classList } from '../../Helpers/classList';
+import { ClassList } from '../../Helpers/ClassList';
 
 interface ExpandButtonProps {
     commentId: string;
@@ -11,7 +11,7 @@ const ExpandButton: React.FC<ExpandButtonProps> = (props: ExpandButtonProps) => 
         <div className="action-buttons">
             <button onClick={() => props.onExpandClick(props.commentId)}>
                 <i
-                    className={classList({
+                    className={ClassList.create({
                         "expand-button": true,
                         "plus": true,
                         "circle": true,

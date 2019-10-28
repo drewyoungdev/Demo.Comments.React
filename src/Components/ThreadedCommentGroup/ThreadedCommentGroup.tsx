@@ -4,7 +4,7 @@ import { CommentModel } from '../../Models/CommentModel';
 import './ThreadedCommentGroup.scss';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
 import MoreReplies from '../MoreReplies/MoreReplies';
-import { classList } from '../../Helpers/classList';
+import { ClassList } from '../../Helpers/ClassList';
 
 interface ThreadedCommentGroupProps {
     rootComment: CommentModel;
@@ -44,7 +44,7 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                             )
                         }
                         <div
-                            className={classList({
+                            className={ClassList.create({
                                 "comment-group-item": true,
                                 "hidden": props.rootComment.numOfHiddenReplies === 0 || isMoreRepliesLoaded
                             })}

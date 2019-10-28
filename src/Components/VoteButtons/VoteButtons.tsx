@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './VoteButtons.scss';
-import { classList } from '../../Helpers/classList';
+import { ClassList } from '../../Helpers/ClassList';
 
 interface VoteRequest {
     // HTTP 429 is used to prevent bot voting from making too many subsequent requests
@@ -27,7 +27,7 @@ const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
                     props.onVote({ id: props.commentId, direction: selectedVoteDirection });
                 }}>
                 <i
-                    className={classList({
+                    className={ClassList.create({
                         "upvote": true,
                         "arrow": true,
                         "up": true,
@@ -45,7 +45,7 @@ const VoteButtons: React.FC<VoteButtonsProps> = (props) => {
                     props.onVote({ id: props.commentId, direction: selectedVoteDirection });
                 }}>
                 <i
-                    className={classList({
+                    className={ClassList.create({
                         "downvote": true,
                         "arrow": true,
                         "down": true,

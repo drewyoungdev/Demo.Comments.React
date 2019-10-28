@@ -2,7 +2,7 @@ import React from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import Comment from '../Comment/Comment';
 import ActionButtons from '../ActionButtons/ActionButtons';
-import { DepthPaddingCalculator } from '../../Helpers/depthPaddingCalculator';
+import { DepthPaddingCalculator } from '../../Helpers/DepthPaddingCalculator';
 
 interface ActionableCommentProps {
     comment: CommentModel;

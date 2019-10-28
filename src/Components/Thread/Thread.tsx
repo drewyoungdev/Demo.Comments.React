@@ -1,8 +1,8 @@
 import React from 'react';
 import './Thread.scss';
-import { classList } from '../../Helpers/classList';
 import ThreadHoverContext from '../../Contexts/ThreadHoverContext';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
+import { ClassList } from '../../Helpers/ClassList';
 
 interface ThreadProps {
     isRootThread: boolean;
@@ -23,7 +23,7 @@ const Thread: React.FC<ThreadProps> = (props) => {
                             onClick={() => closeThread(props.parentId)}
                         >
                         <i className={
-                            classList({
+                            ClassList.create({
                                 "thread-line": true,
                                 "root-thread-line": props.isRootThread,
                                 "thread-line-hovered": parentIdHovered === props.parentId

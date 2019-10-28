@@ -3,8 +3,8 @@ import { CommentModel } from '../../Models/CommentModel';
 import './Comment.scss';
 import ReplyBox from '../ReplyBox/ReplyBox';
 import TimeAgo from 'react-timeago';
-import { classList } from '../../Helpers/classList';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
+import { ClassList } from '../../Helpers/ClassList';
 
 interface CommentProps {
     comment: CommentModel;
@@ -32,7 +32,7 @@ const Comment: React.FC<CommentProps> = (props) => {
                 <>
                     <div className="comment-container">
                         <div className="comment-row comment-header">
-                            <a className={classList({
+                            <a className={ClassList.create({
                                 "comment-row-item": true,
                                 "comment-row-item-author": true,
                                 "comment-row-item-author-collapsed": isThreadClosed(props.comment.id)
@@ -40,21 +40,21 @@ const Comment: React.FC<CommentProps> = (props) => {
                             >
                                 {props.comment.author}
                             </a>
-                            <div className={classList({
+                            <div className={ClassList.create({
                                 "comment-row-item": true,
                                 "comment-row-item-collapsed": isThreadClosed(props.comment.id)
                                 })}
                             >
                                 5k points
                             </div>
-                            <div className={classList({
+                            <div className={ClassList.create({
                                 "comment-row-item": true,
                                 "comment-row-item-collapsed": isThreadClosed(props.comment.id)
                                 })}
                             >
                                 ·
                             </div>
-                            <div className={classList({
+                            <div className={ClassList.create({
                                 "comment-row-item": true,
                                 "comment-row-item-collapsed": isThreadClosed(props.comment.id)
                                 })}
@@ -65,14 +65,14 @@ const Comment: React.FC<CommentProps> = (props) => {
                                 />
                             </div>
                         </div>
-                        <div className={classList({
+                        <div className={ClassList.create({
                             "comment-body": true,
                             "hidden": isThreadClosed(props.comment.id)
                             })}
                         >
                             {props.comment.text}
                         </div>
-                        <div className={classList({
+                        <div className={ClassList.create({
                             "comment-row": true,
                             "comment-footer": true,
                             "hidden": isThreadClosed(props.comment.id)
@@ -91,7 +91,7 @@ const Comment: React.FC<CommentProps> = (props) => {
                                 Save
                             </button>
                         </div>
-                        <div className={classList({
+                        <div className={ClassList.create({
                                 "comment-row": true,
                                 "hidden": !showReplyBox
                                  || isThreadClosed(props.comment.id)

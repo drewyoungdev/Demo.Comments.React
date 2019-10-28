@@ -2,7 +2,7 @@ import React from 'react';
 import { CommentModel } from '../../Models/CommentModel';
 import ThreadGroup from '../ThreadGroup/ThreadGroup';
 import './MoreReplies.scss'
-import { DepthPaddingCalculator } from '../../Helpers/depthPaddingCalculator';
+import { DepthPaddingCalculator } from '../../Helpers/DepthPaddingCalculator';
 
 interface MoreRepliesProps {
     commentId: string;
