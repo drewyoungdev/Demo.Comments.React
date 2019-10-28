@@ -4,12 +4,11 @@ import ThreadedCommentGroup from '../ThreadedCommentGroup/ThreadedCommentGroup';
 import ThreadClickContextProvider from '../../Contexts/ThreadClickContextProvider';
 import ThreadHoverContextProvider from '../../Contexts/ThreadHoverContextProvider';
 
-interface ThreadedCommentGroupWithContextProps {
+interface ThreadedCommentRootProps {
     rootComment: CommentModel;
 }
 
-// Technically this is just the "RootComment"
-const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextProps> = (props) => {
+const ThreadedCommentRoot: React.FC<ThreadedCommentRootProps> = (props) => {
     return (
         <ThreadHoverContextProvider>
             <ThreadClickContextProvider>
@@ -22,4 +21,4 @@ const ThreadedCommentGroupWithContext: React.FC<ThreadedCommentGroupWithContextP
         </ThreadHoverContextProvider>
     );
 }
-export default ThreadedCommentGroupWithContext;
+export default ThreadedCommentRoot;

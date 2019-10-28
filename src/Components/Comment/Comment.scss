@@ -14,28 +14,26 @@
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
-
-    &.comment-header {
-        font-size: 0.8em;
-        color: $meta-data-color;
-    }
-
-    &.comment-footer {
-        font-size: 0.9em;
-        font-weight: 600;
-    }
 }
-.comment-row > a {
+.comment-header {
+    font-size: 0.8em;
+    color: $meta-data-color;
+}
+.comment-header > a {
     color: inherit;
     font-size: inherit;
     font-weight: inherit;
 }
-.comment-row > a:hover {
+.comment-header > a:hover {
     cursor: pointer;
     text-decoration: underline;
     color: inherit;
 }
-.comment-row > button {
+.comment-footer {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+.comment-footer > button {
     color: $action-button-color;
 
     background: transparent;
@@ -46,9 +44,12 @@
     padding: initial;
     outline: 0;
 }
-.comment-row > button:hover {
+.comment-footer > button:hover {
     text-decoration: underline;
     color: $action-button-hover-color;
+}
+.comment-reply-box {
+    width: 100%;
 }
 
 .comment-row-item {

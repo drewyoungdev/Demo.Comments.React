@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { CommentModel } from './Models/CommentModel';
-import ThreadedCommentGroupWithContext from './Components/ThreadedCommentGroupWithContext/ThreadedCommentGroupWithContext';
+import ThreadedCommentRoot from './Components/ThreadedCommentRoot/ThreadedCommentRoot';
 
 const generateRandomNumber = (maxNumber: number, includeZero?: boolean): number => {
   if (includeZero === undefined || !includeZero) {
@@ -144,7 +144,7 @@ const App: React.FC = () => {
 
       {
         testData.map((comment) =>
-          <ThreadedCommentGroupWithContext
+          <ThreadedCommentRoot
             key={comment.id}
             rootComment={comment}
           />

@@ -5,21 +5,22 @@ import ExpandButton from '../ExpandButton/ExpandButton';
 import ThreadClickContext from '../../Contexts/ThreadClickContext';
 
 interface ActionButtonsProps {
+    isCollapsed: boolean;
     commentId: string;
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = (props: ActionButtonsProps) => {
     return (
         <ThreadClickContext.Consumer>
-            {({ isThreadClosed, openThread }) => (
+            {({ openThread }) => (
                 <>
-                    <div className={ isThreadClosed(props.commentId) ? "hidden" : ""}>
+                    <div className={ props.isCollapsed ? "hidden" : ""}>
                         <VoteButtons
                             commentId={props.commentId}
                             onVote={console.log}
                         />
                     </div>
-                    <div className={ isThreadClosed(props.commentId) ? "" : "hidden"}>
+                    <div className={ props.isCollapsed ? "" : "hidden"}>
                         <ExpandButton
                             commentId={props.commentId}
                             onExpandClick={openThread}
