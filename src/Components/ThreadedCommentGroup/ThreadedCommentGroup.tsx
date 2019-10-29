@@ -48,16 +48,15 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
                         </div>
                     </div>
                     <div className={ isThreadClosed(props.rootComment.id) ? "hidden" : "" }>
+                        {/* Replies */}
                         {
                             replies.map((comment) =>
-                                <div key={comment.id}>
-                                    {/* Replies */}
-                                    <ThreadedCommentGroup
-                                        rootComment={comment}
-                                        parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
-                                        depth={props.depth + 1}
-                                    />
-                                </div>
+                                <ThreadedCommentGroup
+                                    key={comment.id}
+                                    rootComment={comment}
+                                    parentIdBreadcrumbs={[...props.parentIdBreadcrumbs, comment.id]}
+                                    depth={props.depth + 1}
+                                />
                             )
                         }
                         <div
