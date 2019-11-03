@@ -20,9 +20,6 @@ const ThreadedCommentGroup: React.FC<ThreadedCommentGroupProps> = (props) => {
     const [replies, setReplies] = useState<CommentModel[]>(props.rootComment.replies);
     const [isMoreRepliesLoaded, setIsMoreRepliesLoaded] = useState<boolean>(false);
 
-    // Can we useState to bind an isCollapsed state to isThreadClosed?
-    // How can a Context.Consumer be toggable?
-
     return (
         <ThreadClickContext.Consumer>
             {({ isThreadClosed }) => (
