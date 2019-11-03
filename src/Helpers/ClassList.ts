@@ -1,5 +1,5 @@
 export class ClassList {
-  static create(classes: object) {
+  static create(classes: any) {
     return Object
       .entries(classes)
       .filter(entry => entry[1])

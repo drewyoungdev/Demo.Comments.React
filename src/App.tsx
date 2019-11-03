@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { CommentModel } from './Models/CommentModel';
-import ThreadedCommentGroupWithContext from './Components/ThreadedCommentGroupWithContext/ThreadedCommentGroupWithContext';
+import ThreadedCommentRoot from './Components/ThreadedCommentRoot/ThreadedCommentRoot';
 
 const generateRandomNumber = (maxNumber: number, includeZero?: boolean): number => {
   if (includeZero === undefined || !includeZero) {
@@ -122,7 +122,6 @@ const App: React.FC = () => {
   return (
     <div className="main-container">
       {/* Functionality TODOS */}
-      {/* Add ability to display more replies */}
       {/* Add ability to track number of children when thread is closed */}
 
       {/* Styling TODOS */}
@@ -130,21 +129,18 @@ const App: React.FC = () => {
 
       {/* Refactor TODOS */}
       {/* Make 'hidden' a global style */}
-      {/* Refactor classList into typescript file */}
 
       {/* User Login TODOS */}
       {/* Allow VoteButtons initial state to be set by props if comment has already been upvoted/downvoted by user */}
       {/* Add ability to highlight user if current logged in user was author */}
 
       {/* Package Consumer TODOS */}
-      {/* Add ability to enable and disable Threads */}
-      {/* Add ability to enable and disable Actions */}
       {/* Make alternative design to mimic Facebook */}
       {/* Re-organize folder structure and use dot notation to for unshareable components */}
 
       {
         testData.map((comment) =>
-          <ThreadedCommentGroupWithContext
+          <ThreadedCommentRoot
             key={comment.id}
             rootComment={comment}
           />
